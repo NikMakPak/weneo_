@@ -1,6 +1,6 @@
 import React from 'react';
 import {navConstants} from "../../utils";
-import styles from './Navbar.module.scss'
+import styles from './NavBar.module.scss'
 
 const NavBar = () => {
   return (
