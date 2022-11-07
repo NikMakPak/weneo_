@@ -1,0 +1,37 @@
+body{
+    justify-content: space-between;
+    font-family: 'Montserrat';
+    font-style: normal;
+}
+.container{
+    width: 60%;
+    margin: 0 auto;
+    background: #C2D6DA;
+}
+.wrap{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+.header {
+    height: 577px;
+    .infoBlock{
+        h1{
+            font-family: 'Montserrat';
+            font-weight: 700;
+            width: 370px;
+        }
+        p{
+          width: 300px;
+        }
+        .btn{
+          padding: 10px 50px;
+          border-radius: 10px;
+          background: #000;
+        }
+    }
+}
+.logo{
+   position: relative;
+}

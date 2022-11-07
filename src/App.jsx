@@ -4,9 +4,19 @@ import Navbar from './components/NavBar/NavBar'
 function App() {
   return (
     <div className="App">
-      <img width={100} height={100} src="../public/img/logo.svg" alt="" />
-      <Navbar/>
-      <h1>Start App</h1>
+      <div className="container">
+        <div className="header">
+        <Navbar />
+        <div className="wrap">
+          <img className='logo' width={404} height={464} src="img/logo.svg" alt="" />
+          <div className="infoBlock">
+            <h1>Инновационная веб студия для вашего вашего бизнеса</h1>
+            <p>Cоздание нового или редизайне существующего проекта с помощью искусственного интеллекта и нашей современной платформы.</p>
+            <button className='btn'>Попробовать инновации</button>
+          </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
