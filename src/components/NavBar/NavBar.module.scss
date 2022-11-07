@@ -5,10 +5,24 @@
     display: flex;
     width: 50%;
     justify-content: space-between;
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', 'sans-serif';
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
     float:right;
     margin-right: 50px;
+
+}
+.nav__phone{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 28px;
+    color: #000;
+    text-decoration: none;
+    transition: 0.3s; // заменить на глоб переменную
+    cursor: pointer;
+    &:hover{
+        color: #008EAA;
+    }
 }

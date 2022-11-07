@@ -4,9 +4,14 @@ import styles from './NavBar.module.scss'
 
 const NavBar = () => {
   return (
-    <ul className={styles.nav__list}>
-      {navConstants.map(item=><li className="nav__item">{item.title}</li>)}
-    </ul>
+    <nav className={styles.nav__list}>
+      {
+        navConstants.map(item=>
+            <li key={item.id} className="nav__item">{item.title}</li>
+        )
+      }
+      <li > <a className={styles.nav__phone} href="tel:+79259689337"> +7 925 968 93-37</a></li>
+    </nav>
   );
 };
 
