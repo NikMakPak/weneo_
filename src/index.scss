@@ -9,14 +9,12 @@ body{
     background: #C2D6DA;
 }
 .wrap{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
+    padding-top: 70px;
 }
 .header {
     height: 577px;
     .infoBlock{
+        margin-left: 60%;
         h1{
             font-family: 'Montserrat';
             font-weight: 700;
@@ -33,5 +31,5 @@ body{
     }
 }
 .logo{
-   position: relative;
+    position: absolute;
 }
