@@ -1,24 +1,31 @@
+@import "styleVars.scss";
 // в этом файле должны лежать глобавльные стили глобальные стили
-p{
+p {
     font-style: normal;
     font-weight: 400;
     font-size: 25px;
     line-height: 30px;
     color: #000000;
 }
-h2{
+
+h2 {
     font-style: normal;
     font-weight: 600;
     font-size: 48px;
     line-height: 59px;
     color: #000000;
 }
-h3{
+
+h3 {
     font-style: normal;
     font-weight: 600;
-    font-size: 35px;
+    font-size: 27px;
     line-height: 43px;
     color: #000000;
+}
+
+.title {
+    text-align: center;
 }
 //h1{
 //    font-style: normal;
@@ -28,43 +35,23 @@ h3{
 //    color: #000000;
 //}
 
-body{
+body {
     justify-content: space-between;
     font-family: 'Montserrat', 'sans-serif';
     font-style: normal;
-    background: #F5F5F5;
+    background: $BG_COLOR;
     margin: 0;
     padding: 0;
 }
 
-.container{
-    //width: 60%;  если поставить в хроме with 1440 то все будет как на шаблоне (потом адаптируем, на след неделе например)
+.container {
+    // width: 70%;
     margin: 0 auto;
-    background: #C2D6DA;
+    background: $BG_COLOR;
 }
-.wrap{
+
+.wrap {
     padding-top: 70px;
 }
-.header {
-    padding-top: 20px;
-    height: 577px;
-    .infoBlock{
-        margin-left: 60%;
-        h1{
-            font-family: 'Montserrat', 'sans-serif';
-            font-weight: 700;
-            width: 370px;
-        }
-        p{
-          width: 300px;
-        }
-        .btn{
-          padding: 10px 50px;
-          border-radius: 10px;
-          background: #000;
-        }
-    }
-}
-.logo{
-    position: absolute;
-}
+
+

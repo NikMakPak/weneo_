@@ -1,3 +1,4 @@
+@import "../../styleVars.scss";
 .card{
   width: 1359px;
   height: 364px;
@@ -7,8 +8,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 20px auto;
   padding: 25px 30px 24px 42px;
-  transition: 0.3s; // заменить на глоб переменную
+  transition: $T_TIME;
   cursor: pointer;
   &:hover{
     box-shadow: none;

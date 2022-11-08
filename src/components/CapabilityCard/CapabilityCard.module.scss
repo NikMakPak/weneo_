@@ -1,18 +1,18 @@
-.card{
-  min-width: 217px;
-  min-height: 120px;
-  background: #F0F0F0; // заменить на глоб переменную
+@import "../../styleVars.scss";
+@import "../../utils/clearStyle.scss";
+.card {
+  @include clear;
+  width: 333px;
+  height: 139px;
+  background: $BG_COLOR;
   box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.12);
   border-radius: 20px;
-  padding: 37px 23px 46px 23px;
-  transition: 0.3s; // заменить на глоб переменную
+  padding: 23px 23px 46px 23px;
+  transition: $T_TIME;
   cursor: pointer;
-  &:hover{
+  
+  &:hover {
     transform: translateY(-15px);
-    box-shadow: none;
+    box-shadow: 4px 20px 40px rgba(0, 0, 0, 0.22);
   }
-}
-p,h2{ // убрать и подлкючить обнуляющий стили файл
-  margin: 0;
-  padding: 0;
 }

@@ -11,6 +11,7 @@ const NavBar = () => {
         )
       }
       <li > <a className={styles.nav__phone} href="tel:+79259689337"> +7 925 968 93-37</a></li>
+      <li><img src="./img/person.svg" alt="" /></li>
     </nav>
   );
 };

@@ -1,0 +1,47 @@
+@import "../../utils/clearStyle.scss";
+form {
+    @include clear;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 50px;
+    button {
+        padding: 12px 70px;
+        background: linear-gradient(315deg, #0060FF 0%, #56D3EC 97.34%);
+        border-radius: 10px;
+        font-size: 24px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    input {
+        width: 556px;
+        height: 40px;
+        padding-left: 10px;
+        border: 4px solid #C2D6DA;
+        border-radius: 10px;
+        transition: box-shadow 0.5s;
+    }
+
+    input:focus {
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    textarea {
+        width: 556px;
+        height: 100px;
+        font-size: 15px;
+        padding-left: 10px;
+        border: 4px solid #C2D6DA;
+        border-radius: 10px;
+        transition: box-shadow 0.5s;
+    }
+
+    textarea:focus {
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+}
+
+.input_block {
+    margin: 15px auto;
+}
