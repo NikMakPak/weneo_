@@ -1,9 +1,9 @@
 import React from 'react';
-import Navbar from "../../components/NavBar/NavBar";
-import CapabilityCard from "../../components/CapabilityCard/CapabilityCard";
+import Navbar from "../../components/Landing/NavBar/NavBar";
+import CapabilityCard from "../../components/Landing/CapabilityCard/CapabilityCard";
 import styles from './Landing.module.scss';
-import FeatureCard from "../../components/FeatureCard/FeatureCard";
-import Form from "../../components/Form/Form"; //стоит все стили лендинга сюда перенести чтобы разгарничить все страницы потом
+import FeatureCard from "../../components/Landing/FeatureCard/FeatureCard";
+import Form from "../../components/Landing/Form/Form"; //стоит все стили лендинга сюда перенести чтобы разгарничить все страницы потом
 const Landing = () => {
     return (
         <>
@@ -51,7 +51,7 @@ const Landing = () => {
                         title={'Легкий блочный конструктор'}
                     />
                 </section>
-                <section>
+                <section className={styles.feedback}>
                     <h2 className='title'>Оставьте заявку, мы свяжемся с вами сегодня!</h2>
                     <Form />
                 </section>

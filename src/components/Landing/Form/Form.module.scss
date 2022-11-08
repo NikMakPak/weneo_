@@ -1,0 +1,76 @@
+@import "../../../utils/clearStyle";
+@import "../../../styleVars.scss";
+.form {
+    @include clear;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 50px;
+    color: #A0A0A0;
+    ::placeholder{
+        color: #A0A0A0;
+    }
+    input,button,textarea{
+        font-family: 'Montserrat', 'sans-serif';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 29px;
+        color: #11363e;
+    }
+    button {
+        font-weight: 600;
+        line-height: 39px;
+        padding: 12px 70px;
+        background: linear-gradient(315deg, #0060FF 0%, #56D3EC 97.34%);
+        border-radius: 10px;
+        font-size: 24px;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        box-shadow: none;
+        transition: $T_TIME;
+        &:hover{
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.25);
+        }
+    }
+
+    input {
+        max-width: 556px;
+        width: 100%;
+        height: 80px;
+        padding-left: 10px;
+        border: 4px solid #C2D6DA;
+        border-radius: 10px;
+        transition: box-shadow 0.5s;
+    }
+
+    input:focus {
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    textarea {
+        padding-top: 10px;
+        width: 1152px;
+        height: 260px;
+        padding-left: 10px;
+        border: 4px solid #C2D6DA;
+        border-radius: 10px;
+        transition: box-shadow 0.5s;
+    }
+
+    textarea:focus {
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.25);
+    }
+}
+
+.input_block {
+    margin: 15px auto;
+}
+.group{
+    display: flex;
+    width: 1152px;
+    gap: 40px;
+    div{
+        width: 100%;
+    }
+}

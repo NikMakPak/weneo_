@@ -1,9 +1,8 @@
-@import "../../styleVars.scss";
-@import "../../utils/clearStyle.scss";
+@import "../../../styleVars";
+@import "../../../utils/clearStyle";
 .card {
   @include clear;
-  width: 333px;
-  height: 139px;
+  width: 433px;
   background: $BG_COLOR;
   box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.12);
   border-radius: 20px;

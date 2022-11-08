@@ -1,5 +1,5 @@
 import React from 'react';
-import {navConstants} from "../../utils";
+import {navConstants} from "../../../utils";
 import styles from './NavBar.module.scss'
 
 const NavBar = () => {

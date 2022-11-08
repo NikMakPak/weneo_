@@ -1,6 +1,6 @@
 import React from "react"
 import styles from './Constructor.module.scss';
-import CapabilityCard from "../../components/CapabilityCard/CapabilityCard";
+import CapabilityCard from "../../components/Landing/CapabilityCard/CapabilityCard";
 export default function Constructor() {
     return (<>
         <div className={styles.headerBar}>
@@ -26,17 +26,8 @@ export default function Constructor() {
             <div className={styles.constrWindow}>
                 {/* Рабочая зона */}
                 <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
-                <h1 style={{'textAlign': "center", "marginTop": 100}}>Добро пожаловать в инновационный веб конструктор!</h1>
             </div>
-            <div className={styles.sideBar}>
-123
+            <div className={styles.sideBar}>123
             </div>
 
         </div>

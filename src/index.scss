@@ -1,5 +1,4 @@
 @import "styleVars.scss";
-// в этом файле должны лежать глобавльные стили глобальные стили
 p {
     font-style: normal;
     font-weight: 400;
@@ -23,6 +22,12 @@ h3 {
     line-height: 43px;
     color: #000000;
 }
+h4{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+}
 
 .title {
     text-align: center;
@@ -42,6 +47,9 @@ body {
     background: $BG_COLOR;
     margin: 0;
     padding: 0;
+}
+*{
+    box-sizing: border-box;
 }
 
 .container {
