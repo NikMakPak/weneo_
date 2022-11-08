@@ -1,39 +1,78 @@
 @import "../../styleVars.scss";
 @import "../../utils/clearStyle.scss";
-.header_bar{
-   @include clear;
-   display: flex;
-   justify-content: space-between;
-   height: 59px;
-   background: $SECOND;
-   img{
-    width: 36px;
-    height: 36px;
-   }
+
+.headerBar {
+    @include clear;
+    display: flex;
+    justify-content: space-between;
+    height: 59px;
+    background: $SECOND;
+
+    img {
+        width: 36px;
+        height: 36px;
+    }
 }
-.lBar{
+
+.headLBar {
     margin-left: 20px;
     display: flex;
     align-items: center;
-    img{
+
+    img {
         margin-right: 30px;
     }
 }
 
-.rBar{
+.headRBar {
     align-items: center;
     display: flex;
-    img{
+
+    img {
         margin-right: 20px;
         cursor: pointer;
     }
-    ul{
+
+    ul {
         display: flex;
-        li{
-            border: 1px solid #000;
-            padding: 19px 20px;
+
+        li {
+            z-index: 1;
+            text-align: center;
+            padding-top: 20px;
+            height: 60px;
+            width: 144px;
+            box-sizing: border-box;
             background: $BG_COLOR;
             cursor: pointer;
+            box-shadow: 0px 4px 10px #C2D6DA;
+        }
+
+        li:hover {
+            border-bottom: 4px solid $ACCENT_COLOR;
         }
     }
+}
+
+.construct {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.constrWindow {
+    overflow: auto;
+    margin-top: 20px;
+    margin-left: 5%;
+    width: 75%;
+    height: 90vh;
+    background: #FFF;
+    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.25);
+}
+
+.sideBar {
+    height: 93vh;
+    width: 285px;
+    background: #FFF;
 }
