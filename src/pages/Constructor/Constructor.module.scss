@@ -72,7 +72,28 @@
 }
 
 .sideBar {
+    box-sizing: border-box;
+    padding-top: 20px;
     height: 93vh;
     width: 285px;
     background: #FFF;
+    img{
+        width: 24px;
+        height: 24px;
+        position:absolute;
+        margin-top: 15px;
+        margin-left: 15px;
+    }
+
+    select{
+        border: 2px solid #C2D6DA;
+        font-size: 18px;
+        text-align: center;
+        width: inherit;
+        height: 52px;
+    }
+    select:focus{
+        border: 2px solid #859497;
+        outline: none;
+    }
 }
