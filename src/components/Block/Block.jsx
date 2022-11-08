@@ -29,7 +29,16 @@ const Block = () => {
       justifyContent: 'space-evenly',
       alignItems: 'center'
     }}>
-      <div style={{background: '#494949', width: '200px', height: '200px'}}>button</div>
+      <div style={{
+        background: '#494949',
+        width: '200px',
+        height: '200px',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+      }}>
+        <button>button</button>
+      </div>
       <div style={{background: '#494949', width: '200px', height: '200px'}}>text</div>
       <div style={{background: '#494949', width: '200px', height: '200px'}}>input</div>
     </div>
