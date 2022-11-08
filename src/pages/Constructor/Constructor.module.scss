@@ -1,0 +1,39 @@
+@import "../../styleVars.scss";
+@import "../../utils/clearStyle.scss";
+.header_bar{
+   @include clear;
+   display: flex;
+   justify-content: space-between;
+   height: 59px;
+   background: $SECOND;
+   img{
+    width: 36px;
+    height: 36px;
+   }
+}
+.lBar{
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    img{
+        margin-right: 30px;
+    }
+}
+
+.rBar{
+    align-items: center;
+    display: flex;
+    img{
+        margin-right: 20px;
+        cursor: pointer;
+    }
+    ul{
+        display: flex;
+        li{
+            border: 1px solid #000;
+            padding: 19px 20px;
+            background: $BG_COLOR;
+            cursor: pointer;
+        }
+    }
+}
