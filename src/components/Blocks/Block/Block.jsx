@@ -1,6 +1,9 @@
 import React from 'react';
+import MiniBlock from "../MiniBlock/MiniBlock";
 
 const Block = () => {
+  const miniBlocks = [{id: "1"}, {id: "2"}, {id: "3"},]
+
   class Block {
 
     constructor() {
@@ -20,6 +23,8 @@ const Block = () => {
   }
 
   const block = new Block();
+
+ 
   return (
     <div style={{
       background: '#9c9c9c',
@@ -29,9 +34,7 @@ const Block = () => {
       justifyContent: 'space-evenly',
       alignItems: 'center'
     }}>
-      <div style={{background: '#494949', width: '200px', height: '200px'}}>button</div>
-      <div style={{background: '#494949', width: '200px', height: '200px'}}>text</div>
-      <div style={{background: '#494949', width: '200px', height: '200px'}}>input</div>
+      {miniBlocks.map(miniBlock => <MiniBlock key={miniBlock.id}/>)}
     </div>
   );
 };
