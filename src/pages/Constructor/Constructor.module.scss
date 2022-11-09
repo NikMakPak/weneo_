@@ -77,15 +77,17 @@
     height: 93vh;
     width: 285px;
     background: #FFF;
-    img{
+    img:nth-child(1){
         width: 24px;
         height: 24px;
         position:absolute;
         margin-top: 15px;
         margin-left: 15px;
+        transition: transform $T_TIME;
     }
 
     select{
+        margin-bottom: 10px;
         border: 2px solid #C2D6DA;
         font-size: 18px;
         text-align: center;
@@ -96,4 +98,9 @@
         border: 2px solid #859497;
         outline: none;
     }
+    
+}
+
+.sideBarContent{
+    padding: 0 10px;
 }

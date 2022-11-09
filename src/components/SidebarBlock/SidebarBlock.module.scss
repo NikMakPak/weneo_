@@ -1,0 +1,28 @@
+@import "../../styleVars.scss";
+@import "../../utils/clearStyle.scss";
+
+.block {
+    @include clear;
+    min-height: 79px;
+    box-shadow: 0px 4px 10px #C2D6DA;
+    padding: 10px 5px 10px 0;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    transition: $T_TIME;
+ 
+
+    h4 {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 17px;
+    }
+}
+.content{
+    margin-top: 5px;
+    margin-left: 50px;
+}
