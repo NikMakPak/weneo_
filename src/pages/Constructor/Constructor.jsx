@@ -1,7 +1,7 @@
 import React from "react"
 import styles from './Constructor.module.scss';
 import CapabilityCard from "../../components/CapabilityCard/CapabilityCard";
-import Block from "../../components/Block/Block";
+import Block from "../../components/Blocks/Block/Block";
 
 export default function Constructor() {
   return (<>
