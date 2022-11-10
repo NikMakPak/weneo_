@@ -1,30 +1,15 @@
 import React from 'react';
 import MiniBlock from "../MiniBlock/MiniBlock";
+import BlockClass from "../../../utils/Block";
+
 
 const Block = () => {
-  const miniBlocks = [{id: "1"}, {id: "2"}, {id: "3"},]
-
-  class Block {
-
-    constructor() {
-      this.width = "100%"
-      this.height = "250px"
-    }
+  const miniBlocks = [{id: "1", kind: null}, {id: "2", kind: null}, {id: "3", kind: null},]
 
 
-  }
+  const block = new BlockClass();
 
-  class Button extends Block {
-    constructor(props) {
-      super(props);
 
-    }
-
-  }
-
-  const block = new Block();
-
- 
   return (
     <div style={{
       background: '#9c9c9c',
@@ -34,7 +19,7 @@ const Block = () => {
       justifyContent: 'space-evenly',
       alignItems: 'center'
     }}>
-      {miniBlocks.map(miniBlock => <MiniBlock key={miniBlock.id}/>)}
+      {miniBlocks.map(miniBlock => <MiniBlock key={miniBlock.id} kind={miniBlock.kind}/>)}
     </div>
   );
 };
