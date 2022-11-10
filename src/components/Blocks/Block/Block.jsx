@@ -21,12 +21,13 @@ const Block = () => {
 
   return (
     <div style={{
-      background: '#9c9c9c',
+      background: '#FFF',
       width: block.width,
       height: block.height,
       display: 'flex',
       justifyContent: 'space-evenly',
-      alignItems: 'center'
+      alignItems: 'center',
+      border: "1px dashed lightgray"
     }}>
       {miniBlocks.sort(sortBlocks).map(miniBlock => <MiniBlock key={miniBlock.id} kind={miniBlock.kind}
                                                                miniBlock={miniBlock}
