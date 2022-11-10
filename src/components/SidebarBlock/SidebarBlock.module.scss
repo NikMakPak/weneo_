@@ -9,20 +9,20 @@
     box-sizing: border-box;
     margin-bottom: 10px;
     transition: $T_TIME;
- 
-
-    h4 {
-        font-weight: 600;
-        font-size: 16px;
-    }
-
-    p {
-        font-weight: 400;
-        font-size: 15px;
-        line-height: 17px;
-    }
 }
 .content{
     margin-top: 5px;
     margin-left: 50px;
+}
+h4 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+p {
+    margin: 0;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 17px;
 }
