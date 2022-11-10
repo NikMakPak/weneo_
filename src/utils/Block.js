@@ -27,4 +27,11 @@ export class Div extends MiniBlockClass {
   }
 }
 
+export class Button extends MiniBlockClass {
+  constructor(width = '150px', height = '70px', text = "Ваше сообщение...") {
+    super(width, height);
+    this.text = text
+  }
+}
+
 export default BlockClass
