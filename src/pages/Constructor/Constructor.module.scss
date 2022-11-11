@@ -77,27 +77,34 @@
     height: 93vh;
     width: 285px;
     background: #FFF;
+    overflow: auto;
     img:nth-child(1){
         width: 24px;
         height: 24px;
-        position:absolute;
         margin-top: 15px;
         margin-left: 15px;
         transition: transform $T_TIME;
     }
 
-    select{
-        margin-bottom: 10px;
+    .select{
+        margin-bottom: 5px;
         border: 2px solid #C2D6DA;
         font-size: 18px;
         text-align: center;
-        width: inherit;
+        width: 100%;
         height: 52px;
-    }
-    select:focus{
-        border: 2px solid #859497;
-        outline: none;
-    }
+        box-sizing: border-box;
+        display: flex;
+        padding-left: 20px;
+        padding-right: 30px;
+        align-items: center;
+        justify-content: space-between;
+        img{
+            position:static;
+            margin: 0;
+            margin-right: 15px;
+        }
+         }
     
 }
 

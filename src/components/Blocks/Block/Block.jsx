@@ -3,13 +3,9 @@ import MiniBlock from "../MiniBlock/MiniBlock";
 import BlockClass from "../../../utils/Block";
 
 
-const Block = () => {
+const Block = ({col}) => {
   const [currentBlock, setCurrentBlock] = useState(null)
-  const [miniBlocks, setMiniBlocks] = useState([{id: "1", order: 1, kind: null}, {id: "2", order: 2, kind: null}, {
-    id: "3",
-    order: 3,
-    kind: null
-  }])
+  const [miniBlocks, setMiniBlocks] = useState(col.map((obj) => {return {id: obj, order: obj, kind: null}}))
 
   const block = new BlockClass();
 

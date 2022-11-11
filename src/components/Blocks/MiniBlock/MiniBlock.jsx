@@ -5,6 +5,7 @@ import {Button, Div, Input} from "../../../utils/Block";
 const MiniBlock = ({kind: initialState, miniBlock, setMiniBlocks, setCurrentBlock, currentBlock}) => {
   const [kind, setKind] = useState(initialState) // блок, в который превратится миниблок
   const [modalActive, setModalActive] = useState(false) // вызов модального окна, в котором можно выбирать в что превратиться
+  const [active, setActive] = useState("1px dashed gray")
   const changeModal = () => {
     setModalActive(false)
   }
@@ -71,7 +72,7 @@ const MiniBlock = ({kind: initialState, miniBlock, setMiniBlocks, setCurrentBloc
         return item
       })))
     } else if (state === 'button') {
-      const button = new Button('150px', '80px', 'отправить')
+      const button = new Button('150px', '40px', 'Отправить')
       transformingBlock =
         <button draggable={true} onDragStart={(e) => dragStartHandler(e, miniBlock)}
                 onDragLeave={(e) => dragEndHandler(e)}
@@ -95,7 +96,8 @@ const MiniBlock = ({kind: initialState, miniBlock, setMiniBlocks, setCurrentBloc
 
   return (
     <div style={{
-      background: '#494949',
+      background: '#FFF',
+      border: active,
       width: '200px',
       height: '200px',
       display: "flex",
@@ -104,6 +106,10 @@ const MiniBlock = ({kind: initialState, miniBlock, setMiniBlocks, setCurrentBloc
     }} onClick={(e) => {
       console.log('MiniBlock', modalActive)
       setModalActive(true)
+    }} onMouseOver={(e) => {
+      setActive("1px solid blue")
+    }} onMouseLeave={(e) => {
+      setActive("1px dashed gray")
     }}
     >
       <Popup active={modalActive} setActive={changeModal} kind={kind} changeKind={changeKind}/>
