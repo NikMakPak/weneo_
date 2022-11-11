@@ -1,95 +1,98 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import Popup from "../../Popup/Popup";
 import {Button, Div, Input} from "../../../utils/Block";
+import {useDrag, useDrop} from 'react-dnd'
+import {ItemTypes} from "../../SidebarBlock/ItemTypes";
 
-const MiniBlock = ({kind: initialState, miniBlock, setMiniBlocks, setCurrentBlock, currentBlock}) => {
-  const [kind, setKind] = useState(initialState) // блок, в который превратится миниблок
+const MiniBlock = ({id, text, index, moveMiniBlock}) => {
+  const [kind, setKind] = useState(null) // блок, в который превратится миниблок
   const [modalActive, setModalActive] = useState(false) // вызов модального окна, в котором можно выбирать в что превратиться
   const [active, setActive] = useState("1px dashed gray")
   const changeModal = () => {
     setModalActive(false)
   }
+  const ref = useRef(null);
+  const [{handlerId}, drop] = useDrop({
+    accept: ItemTypes.CARD,
 
-  function dragStartHandler(e, block) {
-    console.log('drag', block)
-    setCurrentBlock(block)
-  }
+    collect(monitor) {
+      return {handlerId: monitor.getHandlerId()}
+    },
 
-  function dragEndHandler(e) {
-    e.target.style.background = "transparent"
-  }
+    hover(item, monitor) {
+      if (!ref.current) return
+      const dragIndex = item.index
+      const hoverIndex = index
+      if (dragIndex === hoverIndex) return
+      const hoverBoundingRect = ref.current?.getBoundingClientRect()
 
-  function dragOverHandler(e) {
-    e.preventDefault()
-    e.target.style.background = 'white'
-  }
+      const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2
 
-  function dropHandler(e, block) {
-    e.preventDefault()
-    console.log(block)
-    setMiniBlocks(prevState => prevState.map(item => {
-      if (item.id === block.id) {
-        return {...item, order: currentBlock?.order}
+      const clientOffset = monitor.getClientOffset()
+
+      const hoverClientY = clientOffset.y - hoverBoundingRect.top
+
+      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+        return
       }
-      if (item.id === currentBlock?.id) {
-        return {...item, order: block.id}
+      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+        return
       }
-      return item
-    }))
-  }
-
+      moveMiniBlock(dragIndex, hoverIndex)
+      item.index = hoverIndex
+    },
+  })
+  const [{isDragging}, drag] = useDrag({
+    type: ItemTypes.CARD,
+    item: () => {
+      return {id, index}
+    },
+    collect: (monitor) => ({
+      isDragging: monitor.isDragging(),
+    }),
+  })
+  const opacity = isDragging ? 0 : 1
+  drag(drop(ref))
+  console.log('render')
   const changeKind = (state) => {
     let transformingBlock = null;
     if (state === 'input') {
       const input = new Input('150px', '70px', 'text')
       transformingBlock =
-        <input draggable={true} onDragStart={(e) => dragStartHandler(e, miniBlock)}
-               onDragLeave={(e) => dragEndHandler(e)}
-               onDragEnd={(e) => dragEndHandler(e)} onDragOver={(e) => dragOverHandler(e)}
-               onDrop={(e) => dropHandler(e, miniBlock)}
+        <input ref={ref}
+               data-handler-id={handlerId}
                style={{width: input.width, height: input.height, cursor: "grab "}} type={input.type}/>
       setKind(transformingBlock)
-      setMiniBlocks(prevState => (prevState.filter(item => {
-        if (item.id === miniBlock.id) return item.kind = transformingBlock.type
-        return item
-      })))
+      // setMiniBlocks(prevState => (prevState.filter(item => {
+      //   if (item.id === miniBlock.id) return item.kind = transformingBlock.type
+      //   return item
+      // })))
     } else if (state === 'text') {
       const div = new Div('150px', '150px', 'something text...')
-      transformingBlock = <div draggable={true} onDragStart={(e) => dragStartHandler(e, miniBlock)}
-                               onDragLeave={(e) => dragEndHandler(e)}
-                               onDragEnd={(e) => dragEndHandler(e)} onDragOver={(e) => dragOverHandler(e)}
-                               onDrop={(e) => dropHandler(e, miniBlock)} style={{
-        width: div.width,
-        height: div.height,
-        display: "flex",
-        alignItems: 'center',
-        justifyContent: "center",
-        cursor: "grab "
-      }}>{div.text}</div>
+      transformingBlock = <div ref={ref}
+                               data-handler-id={handlerId}
+                               style={{
+                                 width: div.width,
+                                 height: div.height,
+                                 display: "flex",
+                                 alignItems: 'center',
+                                 justifyContent: "center",
+                                 cursor: "grab "
+                               }}>{div.text}</div>
       setKind(transformingBlock)
-      setMiniBlocks(prevState => (prevState.filter(item => {
-        if (item.id === miniBlock.id) return item.kind = transformingBlock.type
-        return item
-      })))
     } else if (state === 'button') {
       const button = new Button('150px', '40px', 'Отправить')
       transformingBlock =
-        <button draggable={true} onDragStart={(e) => dragStartHandler(e, miniBlock)}
-                onDragLeave={(e) => dragEndHandler(e)}
-                onDragEnd={(e) => dragEndHandler(e)} onDragOver={(e) => dragOverHandler(e)}
-                onDrop={(e) => dropHandler(e, miniBlock)} style={{
-          width: button.width,
-          height: button.height,
-          borderRadius: "1rem",
-          cursor: "grab "
-        }}>{button.text}</button>
+        <button ref={ref}
+                data-handler-id={handlerId}
+                style={{
+                  width: button.width,
+                  height: button.height,
+                  borderRadius: "1rem",
+                  cursor: "grab "
+                }}>{button.text}</button>
       setKind(transformingBlock)
-      setMiniBlocks(prevState => (prevState.filter(item => {
-        if (item.id === miniBlock.id) return item.kind = transformingBlock.type
-        return item
-      })))
     }
-
   }
 
   if (kind !== null) return kind
@@ -116,5 +119,21 @@ const MiniBlock = ({kind: initialState, miniBlock, setMiniBlocks, setCurrentBloc
     </div>
   );
 };
+  return (<div ref={ref} style={{
+    background: '#494949',
+    width: '200px',
+    height: '200px',
+    display: "flex",
+    justifyContent: "center",
+    cursor: "grab",
+    alignItems: "center", opacity
+  }} data-handler-id={handlerId} onClick={(e) => {
+    console.log('MiniBlock', modalActive)
+    setModalActive(true)
+  }}>
+    {text}
+    <Popup active={modalActive} setActive={changeModal} kind={kind} changeKind={changeKind}/>
+  </div>)
+}
 
 export default MiniBlock;

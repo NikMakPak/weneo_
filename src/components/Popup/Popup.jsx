@@ -5,15 +5,12 @@ const Popup = ({ active, setActive, kind: kindMiniBlock, changeKind }) => {
   return (
     <div onClick={(e) => {
       e.stopPropagation()
-      console.log('RootPopup', active)
     }}>
       <div className={active ? styles.active : styles.modal} onClick={() => {
-        console.log("wrapperPopup", active)
         setActive()
       }
       }>
         <div className={styles.modal__content} onClick={(e) => {
-          console.log('Modal', active)
           e.stopPropagation()
         }
         }>
