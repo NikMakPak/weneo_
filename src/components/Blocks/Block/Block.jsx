@@ -1,35 +1,19 @@
 import React, {useCallback, useState} from 'react';
 import MiniBlock from "../MiniBlock/MiniBlock";
 import BlockClass from "../../../utils/Block";
-import {Container} from "../MiniBlock/Container";
 import update from "immutability-helper";
-import {Card} from "../MiniBlock/Card";
 
 
-<<<<<<< HEAD
-const Block = ({col}) => {
-  const [currentBlock, setCurrentBlock] = useState(null)
-  const [miniBlocks, setMiniBlocks] = useState(col.map((obj) => {return {id: obj, order: obj, kind: null}}))
-=======
 const Block = () => {
   const [miniBlocks, setMiniBlocks] = useState([{id: "1", text: "first", kind: null}, {
     id: "2",
     text: "second",
     kind: null
   }, {
-    id: "third", text: "3",
+    id: "3", text: "third",
     kind: null
   }])
->>>>>>> e910aa0 (добавил драг дроп и провел рефакторинг)
-
   const block = new BlockClass();
-
-  const sortBlocks = (a, b) => {
-    if (a.order > b.order) {
-      return 1
-    } else return -1
-  }
-
   const moveMiniBlock = useCallback((dragIndex, hoverIndex) => {
     setMiniBlocks((prevState) =>
       update(prevState, {
@@ -40,7 +24,7 @@ const Block = () => {
       }),
     )
   }, [])
-
+  console.log(miniBlocks)
   const renderMiniBlock = useCallback((block, index) => {
     return (
       <MiniBlock
@@ -49,6 +33,7 @@ const Block = () => {
         id={block.id}
         text={block.text}
         moveMiniBlock={moveMiniBlock}
+        setMiniBlocks={setMiniBlocks}
       />
     )
   }, [])
@@ -63,11 +48,6 @@ const Block = () => {
       alignItems: 'center',
       border: "1px dashed lightgray"
     }}>
-      {/*{miniBlocks.sort(sortBlocks).map(miniBlock => <MiniBlock key={miniBlock.id} kind={miniBlock.kind}*/}
-      {/*                                                         miniBlock={miniBlock}*/}
-      {/*                                                         setMiniBlocks={setMiniBlocks}*/}
-      {/*                                                         setCurrentBlock={setCurrentBlock}*/}
-      {/*                                                         currentBlock={currentBlock}/>)}*/}
       {miniBlocks.map((miniBlock, i) => renderMiniBlock(miniBlock, i))}
     </div>
   );

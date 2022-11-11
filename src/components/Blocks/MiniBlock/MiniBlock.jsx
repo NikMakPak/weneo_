@@ -1,17 +1,26 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import Popup from "../../Popup/Popup";
 import {Button, Div, Input} from "../../../utils/Block";
 import {useDrag, useDrop} from 'react-dnd'
 import {ItemTypes} from "../../SidebarBlock/ItemTypes";
 
-const MiniBlock = ({id, text, index, moveMiniBlock}) => {
-  const [kind, setKind] = useState(null) // блок, в который превратится миниблок
-  const [modalActive, setModalActive] = useState(false) // вызов модального окна, в котором можно выбирать в что превратиться
-  const [active, setActive] = useState("1px dashed gray")
-  const changeModal = () => {
+const MiniBlock = ({id, text, index, moveMiniBlock, setMiniBlocks}) => {
+  const [kind, setKind] = useState(null) // вид блока, в который превратится миниблок
+  const [modalActive, setModalActive] = useState(false) // вызов модального окна, в котором можно выбирать во что превратиться
+
+  const offModal = () => {
     setModalActive(false)
   }
+
   const ref = useRef(null);
+
+  // useEffect(() => {
+  //   console.log('kind', kind)
+  //   console.log('before ref', ref)
+  //   if (kind) ref.current = kind
+  //   console.log('after ref', ref)
+  // }, [kind])
+
   const [{handlerId}, drop] = useDrop({
     accept: ItemTypes.CARD,
 
@@ -42,6 +51,7 @@ const MiniBlock = ({id, text, index, moveMiniBlock}) => {
       item.index = hoverIndex
     },
   })
+
   const [{isDragging}, drag] = useDrag({
     type: ItemTypes.CARD,
     item: () => {
@@ -51,9 +61,9 @@ const MiniBlock = ({id, text, index, moveMiniBlock}) => {
       isDragging: monitor.isDragging(),
     }),
   })
+
   const opacity = isDragging ? 0 : 1
   drag(drop(ref))
-  console.log('render')
   const changeKind = (state) => {
     let transformingBlock = null;
     if (state === 'input') {
@@ -63,10 +73,10 @@ const MiniBlock = ({id, text, index, moveMiniBlock}) => {
                data-handler-id={handlerId}
                style={{width: input.width, height: input.height, cursor: "grab "}} type={input.type}/>
       setKind(transformingBlock)
-      // setMiniBlocks(prevState => (prevState.filter(item => {
-      //   if (item.id === miniBlock.id) return item.kind = transformingBlock.type
-      //   return item
-      // })))
+      setMiniBlocks(prevState => (prevState.filter(item => {
+        if (item.id === id) return item.kind = transformingBlock.type
+        return item
+      })))
     } else if (state === 'text') {
       const div = new Div('150px', '150px', 'something text...')
       transformingBlock = <div ref={ref}
@@ -80,8 +90,12 @@ const MiniBlock = ({id, text, index, moveMiniBlock}) => {
                                  cursor: "grab "
                                }}>{div.text}</div>
       setKind(transformingBlock)
+      setMiniBlocks(prevState => (prevState.filter(item => {
+        if (item.id === id) return item.kind = transformingBlock.type
+        return item
+      })))
     } else if (state === 'button') {
-      const button = new Button('150px', '40px', 'Отправить')
+      const button = new Button('150px', '80px', 'отправить')
       transformingBlock =
         <button ref={ref}
                 data-handler-id={handlerId}
@@ -92,33 +106,15 @@ const MiniBlock = ({id, text, index, moveMiniBlock}) => {
                   cursor: "grab "
                 }}>{button.text}</button>
       setKind(transformingBlock)
+      setMiniBlocks(prevState => (prevState.filter(item => {
+        if (item.id === id) return item.kind = transformingBlock.type
+        return item
+      })))
     }
   }
 
   if (kind !== null) return kind
 
-  return (
-    <div style={{
-      background: '#FFF',
-      border: active,
-      width: '200px',
-      height: '200px',
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    }} onClick={(e) => {
-      console.log('MiniBlock', modalActive)
-      setModalActive(true)
-    }} onMouseOver={(e) => {
-      setActive("1px solid blue")
-    }} onMouseLeave={(e) => {
-      setActive("1px dashed gray")
-    }}
-    >
-      <Popup active={modalActive} setActive={changeModal} kind={kind} changeKind={changeKind}/>
-    </div>
-  );
-};
   return (<div ref={ref} style={{
     background: '#494949',
     width: '200px',
@@ -128,11 +124,10 @@ const MiniBlock = ({id, text, index, moveMiniBlock}) => {
     cursor: "grab",
     alignItems: "center", opacity
   }} data-handler-id={handlerId} onClick={(e) => {
-    console.log('MiniBlock', modalActive)
     setModalActive(true)
   }}>
     {text}
-    <Popup active={modalActive} setActive={changeModal} kind={kind} changeKind={changeKind}/>
+    <Popup active={modalActive} setActive={offModal} kind={kind} changeKind={changeKind}/>
   </div>)
 }
 
