@@ -5,8 +5,8 @@ import Constructor from './pages/Constructor/Constructor';
 function App() {
   return (
     <>
-      {/*<Constructor/>*/}
-       <Landing />
+      <Constructor/>
+       {/*<Landing />*/}
     </>
   );
 }
