@@ -4,15 +4,8 @@ import BlockClass from "../../../utils/Block";
 import update from "immutability-helper";
 
 
-const Block = () => {
-  const [miniBlocks, setMiniBlocks] = useState([{id: "1", text: "first", kind: null}, {
-    id: "2",
-    text: "second",
-    kind: null
-  }, {
-    id: "3", text: "third",
-    kind: null
-  }])
+const Block = ({col, childs}) => {
+  const [miniBlocks, setMiniBlocks] = useState(col.map((obj) => { return {id: obj, order: obj, kind: obj.kind}}))
   const block = new BlockClass();
   const moveMiniBlock = useCallback((dragIndex, hoverIndex) => {
     setMiniBlocks((prevState) =>

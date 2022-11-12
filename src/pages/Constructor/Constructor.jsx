@@ -8,7 +8,13 @@ import { ItemTypes } from "../../components/SidebarBlock/ItemTypes";
 
 export default function Constructor() {
     const [value, setValue] = React.useState([]);
-    const [containerItems, setContainerItems] = React.useState([])
+    // TODO Добавить разные типы блоков сайдбара,
+    //  с помощью Dnd сделать пертаскивания в колонку и добавления его в стейт как дочерний элемент колонки
+    // Сделать таргет Dnd колонку,
+    // Добавить в модуль ConstructWindow проверку типов блоков перед добавлением в стейт и рендером
+    // Переработать компонент Miniblock
+    
+    const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
 
     // Поместить объект стилей в отдельный файл
     const style = {
@@ -38,11 +44,12 @@ export default function Constructor() {
         } else if (canDrop) {
             backgroundColor = 'rgba(200,200,200, 0.1)'
         }
+        console.log(containerItems);
         return (
             <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
                 {/* {isActive ? 'Release to drop' : 'Drag a box here'} */}
                 {
-                    containerItems.length ? containerItems.map((e) => <Block col={e.col} />) :
+                    containerItems.length ? containerItems.map((e) => <Block col={e.col} childs={e.childs}/>) :
                         <h3 style={{ textAlign: "center", marginTop: "20%" }}>Перетащите сюда блок</h3>
                 }
             </div>
@@ -93,7 +100,7 @@ export default function Constructor() {
                         value.includes("0") &&
                         <>
 
-                            <SidebarBlock col={[1,2,3,4]} setContainerItems={setContainerItems} title={"Колонки | | | "} descr={"Основной блок с 4 колонками"} />
+                            <SidebarBlock col={[{id: 1, kind: "text"},{id: 1, kind: "text"},{id: 1, kind: "text"},{id: 1, kind: "text"}]} setContainerItems={setContainerItems} title={"Колонки | | | "} descr={"Основной блок с 4 колонками"} />
                             <SidebarBlock col={[1,2,3]} setContainerItems={setContainerItems} title={"Колонки | | "} descr={"Основной блок с 3 колонками"} />
                             <SidebarBlock col={[1,2]} setContainerItems={setContainerItems} title={"Колонки | "} descr={"Основной блок с 2 колонками"} />
                         </>
@@ -108,10 +115,9 @@ export default function Constructor() {
                     {
                         value.includes("1") &&
                         <>
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Шаблоноблок 1"} descr={"описание что делает блок, с текстом и описанием"} />
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Шаблоноблок 2"} descr={"описание что делает блок, с текстом и описанием"} />
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Шаблоноблок 3"} descr={"описание что делает блок, с текстом и описанием"} />
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Шаблоноблок 4"} descr={"описание что делает блок, с текстом и описанием"} />
+                            <SidebarBlock setContainerItems={setContainerItems} title={"Текст"} descr={"Блок с текстом"} />
+                            <SidebarBlock setContainerItems={setContainerItems} title={"Форма"} descr={"Блок с формой"} />
+                            <SidebarBlock setContainerItems={setContainerItems} title={"Кнопка"} descr={"Блок с кнопкой"} /> 
                         </>
                     }
                     </div>

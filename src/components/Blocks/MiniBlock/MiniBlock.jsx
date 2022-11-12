@@ -95,11 +95,12 @@ const MiniBlock = ({id, text, index, moveMiniBlock, setMiniBlocks}) => {
         return item
       })))
     } else if (state === 'button') {
-      const button = new Button('150px', '80px', 'отправить')
+      const button = new Button('150px', '40px', 'отправить')
       transformingBlock =
         <button ref={ref}
                 data-handler-id={handlerId}
                 style={{
+                  background: '#FFF',
                   width: button.width,
                   height: button.height,
                   borderRadius: "1rem",
@@ -116,9 +117,10 @@ const MiniBlock = ({id, text, index, moveMiniBlock, setMiniBlocks}) => {
   if (kind !== null) return kind
 
   return (<div ref={ref} style={{
-    background: '#494949',
-    width: '200px',
-    height: '200px',
+    background: '#FFF',
+    border: "1px dashed lightgray",
+    width: '300px',
+    height: '100%',
     display: "flex",
     justifyContent: "center",
     cursor: "grab",
