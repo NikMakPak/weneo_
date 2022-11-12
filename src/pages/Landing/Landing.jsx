@@ -51,7 +51,7 @@ const Landing = () => {
                         title={'Легкий блочный конструктор'}
                     />
                 </section>
-                <section>
+                <section className={styles.feedback}>
                     <h2 className='title'>Оставьте заявку, мы свяжемся с вами сегодня!</h2>
                     <Form />
                 </section>
