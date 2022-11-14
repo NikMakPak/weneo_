@@ -2,9 +2,15 @@ import React from "react"
 import styles from './Constructor.module.scss';
 import SidebarBlock from "../../components/SidebarBlock/SidebarBlock";
 import Block from "../../components/Blocks/Block/Block";
+import MiniBlock from "../../components/Blocks/MiniBlock/MiniBlock";
+import TextBlock from "../../components/Blocks/TextBlock";
+import FormBlock from "../../components/Blocks/FormBlock";
 import { useDrop, DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { ItemTypes } from "../../components/SidebarBlock/ItemTypes";
+import NavBar from "../../components/Blocks/Block/NavBar";
+import Header from "../../components/Blocks/Header";
+import TitleBlock from "../../components/Blocks/TitleBlock";
 
 export default function Constructor() {
     const [value, setValue] = React.useState([]);
@@ -13,7 +19,7 @@ export default function Constructor() {
     // Сделать таргет Dnd колонку,
     // Добавить в модуль ConstructWindow проверку типов блоков перед добавлением в стейт и рендером
     // Переработать компонент Miniblock
-    
+
     const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
 
     // Поместить объект стилей в отдельный файл
@@ -49,7 +55,13 @@ export default function Constructor() {
             <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
                 {/* {isActive ? 'Release to drop' : 'Drag a box here'} */}
                 {
-                    containerItems.length ? containerItems.map((e) => <Block col={e.col} childs={e.childs}/>) :
+                    containerItems.length ? containerItems.map((e) =>
+                        e.kind === "form" ? <FormBlock /> :
+                            e.kind === "nav" ? <NavBar /> :
+                                e.kind === "header" ? <Header btnColor={"red"}/> :
+                                    e.kind === "title" ? <TitleBlock /> :
+                                        e.kind === "text" ? <TextBlock /> :
+                                            <></>) :
                         <h3 style={{ textAlign: "center", marginTop: "20%" }}>Перетащите сюда блок</h3>
                 }
             </div>
@@ -90,56 +102,67 @@ export default function Constructor() {
                     <select value={value} onChange={(event) => { setValue(event.target.value); setRotateWidg(prev => prev + 90) }}>
                         {options}
                     </select> */}
-                    <div onClick={() => setValue((prev)=> !prev.includes("0") ? [...prev, "0"]: prev.filter((e) => e !== "0"))} className={styles.select}>
+                    <div onClick={() => setValue((prev) => !prev.includes("0") ? [...prev, "0"] : prev.filter((e) => e !== "0"))} className={styles.select}>
                         <img src="./img/widgets.svg" alt="" />
-                        <h4>Колонки</h4>
+                        <h4>Формы</h4>
                         <img width={14} height={11} src="./img/select-arr.svg" alt="" />
                     </div>
                     <div className={styles.sideBarContent}>
-                    {
-                        value.includes("0") &&
-                        <>
+                        {
+                            value.includes("0") &&
+                            <>
 
-                            <SidebarBlock col={[{id: 1, kind: "text"},{id: 1, kind: "text"},{id: 1, kind: "text"},{id: 1, kind: "text"}]} setContainerItems={setContainerItems} title={"Колонки | | | "} descr={"Основной блок с 4 колонками"} />
-                            <SidebarBlock col={[1,2,3]} setContainerItems={setContainerItems} title={"Колонки | | "} descr={"Основной блок с 3 колонками"} />
-                            <SidebarBlock col={[1,2]} setContainerItems={setContainerItems} title={"Колонки | "} descr={"Основной блок с 2 колонками"} />
-                        </>
-                    }
+                                <SidebarBlock kind={"form"} setContainerItems={setContainerItems} title={"Стандартная Форма"} descr={"Основной блок с формой"} />
+                            </>
+                        }
                     </div>
-                    <div onClick={() => setValue((prev)=> !prev.includes("1") ? [...prev, "1"]: prev.filter((e) => e !== "1"))} className={styles.select}>
+                    <div onClick={() => setValue((prev) => !prev.includes("1") ? [...prev, "1"] : prev.filter((e) => e !== "1"))} className={styles.select}>
                         <img src="./img/widgets.svg" alt="" />
-                        <h4>Блоки</h4>
+                        <h4>Навигация</h4>
                         <img width={14} height={11} src="./img/select-arr.svg" alt="" />
                     </div>
                     <div className={styles.sideBarContent}>
-                    {
-                        value.includes("1") &&
-                        <>
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Текст"} descr={"Блок с текстом"} />
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Форма"} descr={"Блок с формой"} />
-                            <SidebarBlock setContainerItems={setContainerItems} title={"Кнопка"} descr={"Блок с кнопкой"} /> 
-                        </>
-                    }
+                        {
+                            value.includes("1") &&
+                            <>
+                                <SidebarBlock setContainerItems={setContainerItems} kind={"nav"} title={"Стандартная навигация"} descr={"Блок с навигацией"} />
+                            </>
+                        }
                     </div>
-                    <div onClick={() => setValue((prev)=> !prev.includes("2") ? [...prev, "2"]: prev.filter((e) => e !== "2"))} className={styles.select}>
+                    <div onClick={() => setValue((prev) => !prev.includes("2") ? [...prev, "2"] : prev.filter((e) => e !== "2"))} className={styles.select}>
                         <img src="./img/widgets.svg" alt="" />
-                        <h4>Нейроблоки</h4>
+                        <h4>Шапки</h4>
                         <img width={14} height={11} src="./img/select-arr.svg" alt="" />
                     </div>
                     <div className={styles.sideBarContent}>
-                    {
-                        value.includes("2") &&
-                       
-                         <>
-                         <SidebarBlock col={[]} setContainerItems={setContainerItems} title={"Нейроноблок 1"} descr={"описание что делает блок, с текстом и описанием"} />
-                         <SidebarBlock setContainerItems={setContainerItems} title={"Нейроноблок 2"} descr={"описание что делает блок, с текстом и описанием"} />
-                         <SidebarBlock setContainerItems={setContainerItems} title={"Нейроноблок 3"} descr={"описание что делает блок, с текстом и описанием"} />
-                         <SidebarBlock setContainerItems={setContainerItems} title={"Нейроноблок 4"} descr={"описание что делает блок, с текстом и описанием"} />
-                     </>
-                    }
+                        {
+                            value.includes("2") &&
+
+                            <>
+                                <SidebarBlock kind={"header"} setContainerItems={setContainerItems} title={"Стандартная шапка"} descr={"Блок с стандартной шапкой"} />
+                            </>
+                        }
                     </div>
-                        {/* Сделать объекты для генерации блоков селектора*/}
+                    <div onClick={() => setValue((prev) => !prev.includes("3") ? [...prev, "3"] : prev.filter((e) => e !== "3"))} className={styles.select}>
+                        <img src="./img/widgets.svg" alt="" />
+                        <h4>Текст</h4>
+                        <img width={14} height={11} src="./img/select-arr.svg" alt="" />
+                    </div>
+                    <div className={styles.sideBarContent}>
+                        {
+                            value.includes("3") &&
+
+                            <>
+                                <SidebarBlock kind={"title"} setContainerItems={setContainerItems} title={"Стандартная заголовок"} descr={"Блок с стандартным заголовком"} />
+                                <SidebarBlock kind={"text"} setContainerItems={setContainerItems} title={"Стандартный текст"} descr={"Блок с стандартным текстом"} />
+                            </>
+                        }
+                    </div>
+
+
+                    {/* Сделать объекты для генерации блоков селектора*/}
                 </div>
+
             </DndProvider>
         </div>
     </>

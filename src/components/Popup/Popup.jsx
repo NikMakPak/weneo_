@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Popup.module.scss'
 
-const Popup = ({ active, setActive, kind: kindMiniBlock, changeKind }) => {
+const Popup = ({ active, setActive}) => {
   return (
     <div onClick={(e) => {
       e.stopPropagation()
@@ -23,9 +23,9 @@ const Popup = ({ active, setActive, kind: kindMiniBlock, changeKind }) => {
             </div>
           </div>
           <div className={styles.sattingsWrap}>
-            <button onClick={() => changeKind('input')}>Форма</button>
-            <button onClick={() => changeKind('text')}>Блок текста</button>
-            <button onClick={() => changeKind('button')}>Кнопка</button>
+            <button>Форма</button>
+            <button>Блок текста</button>
+            <button>Кнопка</button>
           </div>
         </div>
       </div>

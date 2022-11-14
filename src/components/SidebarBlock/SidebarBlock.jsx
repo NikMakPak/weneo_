@@ -12,15 +12,15 @@ const style = {
     transition: "$T_TIME",
     display: "flex"
   }
-export const SidebarBlock = function Box({title,descr, setContainerItems, col, childs}) {
+export const SidebarBlock = function Box({title,descr, kind, setContainerItems, col, childs}) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.BOX, //Нужно передавать тип блока, с помощью проверок в ConstructWindow Будет генериться нужный блок
-        item: { title, descr, col, childs},
+        item: { title, descr, col, childs, kind},
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult()
             if (item && dropResult) {
                 setContainerItems(perv => [...perv, item])
-              console.log(item);
+              console.log(monitor);
             }
         },
         collect: (monitor) => ({
