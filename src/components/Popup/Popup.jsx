@@ -7,7 +7,7 @@ const Popup = ({ active, setActive}) => {
       e.stopPropagation()
     }}>
       <div className={active ? styles.active : styles.modal} onClick={() => {
-        setActive()
+        setActive(false)
       }
       }>
         <div className={styles.modal__content} onClick={(e) => {

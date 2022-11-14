@@ -1,8 +1,8 @@
 import React from "react"
 import styles from './Constructor.module.scss';
 import SidebarBlock from "../../components/SidebarBlock/SidebarBlock";
-import Block from "../../components/Blocks/Block/Block";
-import MiniBlock from "../../components/Blocks/MiniBlock/MiniBlock";
+// import Block from "../../components/Blocks/Block/Block";
+// import MiniBlock from "../../components/Blocks/MiniBlock/MiniBlock";
 import TextBlock from "../../components/Blocks/TextBlock";
 import FormBlock from "../../components/Blocks/FormBlock";
 import { useDrop, DndProvider } from 'react-dnd'
@@ -58,7 +58,7 @@ export default function Constructor() {
                     containerItems.length ? containerItems.map((e) =>
                         e.kind === "form" ? <FormBlock /> :
                             e.kind === "nav" ? <NavBar /> :
-                                e.kind === "header" ? <Header btnColor={"red"}/> :
+                                e.kind === "header" ? <Header/> :
                                     e.kind === "title" ? <TitleBlock /> :
                                         e.kind === "text" ? <TextBlock /> :
                                             <></>) :

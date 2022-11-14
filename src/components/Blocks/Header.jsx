@@ -3,9 +3,8 @@ import Popup from "../Popup/Popup"
 export default function Header() {
     const [modalActive, setModalActive] = React.useState(false)
     return (
-        <div style={{
+        <div onClick={() => setModalActive(true)} style={{
             padding: "50px",
-            background: '#FFF',
             width: "100%",
             height: "95vh",
             display: 'flex',
@@ -33,7 +32,7 @@ export default function Header() {
                 background: "#2971f5"
             }}>Создать</button>
             </div>
-            <Popup active={false}/>
+            <Popup active={modalActive} setActive={() => setModalActive()}/>
         </div>
     )
 }

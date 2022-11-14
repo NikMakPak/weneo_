@@ -20,7 +20,6 @@ export const SidebarBlock = function Box({title,descr, kind, setContainerItems, 
             const dropResult = monitor.getDropResult()
             if (item && dropResult) {
                 setContainerItems(perv => [...perv, item])
-              console.log(monitor);
             }
         },
         collect: (monitor) => ({
