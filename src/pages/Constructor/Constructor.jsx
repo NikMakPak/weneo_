@@ -14,11 +14,6 @@ import TitleBlock from "../../components/Blocks/TitleBlock";
 
 export default function Constructor() {
     const [value, setValue] = React.useState([]);
-    // TODO Добавить разные типы блоков сайдбара,
-    //  с помощью Dnd сделать пертаскивания в колонку и добавления его в стейт как дочерний элемент колонки
-    // Сделать таргет Dnd колонку,
-    // Добавить в модуль ConstructWindow проверку типов блоков перед добавлением в стейт и рендером
-    // Переработать компонент Miniblock
 
     const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
 
