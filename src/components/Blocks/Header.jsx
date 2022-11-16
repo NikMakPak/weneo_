@@ -1,13 +1,19 @@
 import React from "react"
 import Popup from "../Popup/Popup"
-export default function Header() {
+export default function Header({ Items, setContainerItems, containerItems }) {
+    console.log(Items);
     const [modalActive, setModalActive] = React.useState(false)
     const [modalPos, setModalPos] = React.useState({})
-    const [blockStyles, setBlockStyles] = React.useState(45)
+    const [blockStyles, setBlockStyles] = React.useState(Items.elements)
     const onClickEdit = (event) => {
-        setModalPos({posX: event.pageX, posY: event.pageY})
+        console.log(event);
+        setModalPos({ posX: event.pageX, posY: event.pageY })
         setModalActive(true)
+
     }
+
+
+
     return (
         <div onClick={onClickEdit} style={{
             padding: "50px",
@@ -25,20 +31,20 @@ export default function Header() {
                 width: "50%",
                 color: "#FFF",
             }}>
-                <h1 style={{fontSize: `${blockStyles}px`}}>Сайт для вашего бизнеса</h1>
-                <h4 style={{marginBottom: "50px"}}>Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.</h4>
+                <h1 style={{ fontSize: blockStyles.h1.fontSize, color: blockStyles.h1.color }}>{blockStyles.h1.val}</h1>
+                <h4 style={{ marginBottom: "50px", fontSize: blockStyles.h4.fontSize, color: blockStyles.h4.color }}>{blockStyles.h4.val}</h4>
                 <button style={{
-                width: "200px",
-                height: "45px",
-                borderRadius: "20px",
-                border: "none",
-                color: "#FFF",
-                cursor: "pointer",
-                margin: "auto",
-                background: "#2971f5"
-            }}>Создать</button>
+                    width: "200px",
+                    height: "45px",
+                    borderRadius: "20px",
+                    border: "none",
+                    color: blockStyles.btn.color,
+                    cursor: "pointer",
+                    margin: "auto",
+                    background: blockStyles.btn.bg
+                }}>{blockStyles.btn.val}</button>
             </div>
-            <Popup active={modalActive} setActive={() => setModalActive()} pos={modalPos} blockStyles={blockStyles} setBlockStyles={(e) => setBlockStyles(e)}/>
+            <Popup Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} active={modalActive} setActive={() => setModalActive()} pos={modalPos} blockStyles={blockStyles} setBlockStyles={(e) => setBlockStyles(e)} />
         </div>
     )
 }

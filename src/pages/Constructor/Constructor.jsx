@@ -53,7 +53,7 @@ export default function Constructor() {
                     containerItems.length ? containerItems.map((e) =>
                         e.kind === "form" ? <FormBlock /> :
                             e.kind === "nav" ? <NavBar /> :
-                                e.kind === "header" ? <Header/> :
+                                e.kind === "header" ? <Header containerItems={containerItems} setContainerItems={(obj)=> setContainerItems(obj)} Items={e}/> :
                                     e.kind === "title" ? <TitleBlock /> :
                                         e.kind === "text" ? <TextBlock /> :
                                             <></>) :
@@ -134,7 +134,17 @@ export default function Constructor() {
                             value.includes("2") &&
 
                             <>
-                                <SidebarBlock kind={"header"} setContainerItems={setContainerItems} title={"Стандартная шапка"} descr={"Блок с стандартной шапкой"} />
+                                <SidebarBlock
+                                    kind={"header"}
+                                    containerItems={containerItems}
+                                    setContainerItems={setContainerItems}
+                                    title={"Стандартная шапка"}
+                                    descr={"Блок с стандартной шапкой"}
+                                    elements={{
+                                         h1: {val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF"},
+                                          h4: {val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.", fontSize: "20px", color: "#FFF"},
+                                           btn: {val: "Создать", bg: "blue", color: "#FFF"} 
+                                           }} />
                             </>
                         }
                     </div>
