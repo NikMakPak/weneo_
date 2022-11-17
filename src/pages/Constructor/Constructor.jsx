@@ -54,8 +54,8 @@ export default function Constructor() {
                         e.kind === "form" ? <FormBlock /> :
                             e.kind === "nav" ? <NavBar /> :
                                 e.kind === "header" ? <Header containerItems={containerItems} setContainerItems={(obj)=> setContainerItems(obj)} Items={e}/> :
-                                    e.kind === "title" ? <TitleBlock /> :
-                                        e.kind === "text" ? <TextBlock /> :
+                                    e.kind === "title" ? <TitleBlock containerItems={containerItems} setContainerItems={(obj)=> setContainerItems(obj)} Items={e}/> :
+                                        e.kind === "text" ? <TextBlock containerItems={containerItems} setContainerItems={(obj)=> setContainerItems(obj)} Items={e} /> :
                                             <></>) :
                         <h3 style={{ textAlign: "center", marginTop: "20%" }}>Перетащите сюда блок</h3>
                 }
@@ -69,7 +69,7 @@ export default function Constructor() {
         <div className={styles.headerBar}>
             <div className={styles.headLBar}>
                 <img width={36} height={36} src="./img/construct.svg" alt="" />
-                <h3>Название нового сайта</h3>
+                <h4 style={{fontSize: "18px"}}>Название нового сайта</h4>
             </div>
             <div className={styles.headRBar}>
                 <img src="./img/undo.svg" alt="" />
@@ -141,9 +141,9 @@ export default function Constructor() {
                                     title={"Стандартная шапка"}
                                     descr={"Блок с стандартной шапкой"}
                                     elements={{
-                                         h1: {val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF"},
+                                         h1: {val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF",},
                                           h4: {val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.", fontSize: "20px", color: "#FFF"},
-                                           btn: {val: "Создать", bg: "blue", color: "#FFF"} 
+                                           btn: {val: "Создать",fontSize: "15px", bg: "#2971F5", color: "#FFF"} 
                                            }} />
                             </>
                         }
@@ -158,8 +158,24 @@ export default function Constructor() {
                             value.includes("3") &&
 
                             <>
-                                <SidebarBlock kind={"title"} setContainerItems={setContainerItems} title={"Стандартная заголовок"} descr={"Блок с стандартным заголовком"} />
-                                <SidebarBlock kind={"text"} setContainerItems={setContainerItems} title={"Стандартный текст"} descr={"Блок с стандартным текстом"} />
+                                <SidebarBlock 
+                                kind={"title"} 
+                                setContainerItems={setContainerItems} 
+                                title={"Стандартная заголовок"} 
+                                descr={"Блок с стандартным заголовком"} 
+                                elements={{
+                                    h1: {val: "Заголовок", fontSize: "35px", color: "#000",},
+                                      }}/>
+
+                                <SidebarBlock 
+                                kind={"text"} 
+                                setContainerItems={setContainerItems} 
+                                title={"Стандартный текст"} 
+                                descr={"Блок с стандартным текстом"} 
+                                elements={{
+                                         p: {val: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur ut ea dignissimos, mollitia a. Eaque a ducimus, tenetur temporibus dolore perspiciatis veritatis exercitationem rem quidem natus et numquam? Quisquam.", fontSize: "25px", color: "#000",},
+                                           }} />
+                                           
                             </>
                         }
                     </div>

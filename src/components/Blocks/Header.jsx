@@ -34,6 +34,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
                 <h1 style={{ fontSize: blockStyles.h1.fontSize, color: blockStyles.h1.color }}>{blockStyles.h1.val}</h1>
                 <h4 style={{ marginBottom: "50px", fontSize: blockStyles.h4.fontSize, color: blockStyles.h4.color }}>{blockStyles.h4.val}</h4>
                 <button style={{
+                    fontSize: blockStyles.btn.fontSize,
                     width: "200px",
                     height: "45px",
                     borderRadius: "20px",
