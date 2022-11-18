@@ -69,7 +69,7 @@ export default function Constructor() {
             <>
                 <div className={styles.headerBar}>
                     <div className={styles.headLBar}>
-                        <img width={36} height={36} src="./img/construct.svg" alt="" />
+                        <img width={36} height={36} src="./img/mini_logo.png" alt="" />
                         <h4 style={{ fontSize: "18px" }}>Название нового сайта</h4>
                     </div>
                     <div className={styles.headRBar}>
