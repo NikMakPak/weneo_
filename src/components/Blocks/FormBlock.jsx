@@ -1,8 +1,16 @@
 import React from "react"
-
-export default function FormBlock({}) {
+import Popup from "../Popup/Popup"
+export default function FormBlock({Items, setContainerItems, containerItems}) {
+    const [modalActive, setModalActive] = React.useState(false)
+    const [modalPos, setModalPos] = React.useState({})
+    const [blockStyles, setBlockStyles] = React.useState(Items.elements)
+    const onClickEdit = (event) => {
+        console.log(event);
+        setModalPos({ posX: event.pageX, posY: event.pageY })
+        setModalActive(true)
+    }
     return(
-        <div style={{
+        <div onClick={onClickEdit} style={{
             padding: "50px",
             background: '#FFF',
             width: "100%",
@@ -11,19 +19,19 @@ export default function FormBlock({}) {
             flexDirection: "column",
             
           }}>
-            <input placeholder="Ivan@mail.ru" style={{
+            <input placeholder={blockStyles.input1.val} style={{
                 width: "50%",
                 height: "60px",
                 padding: "0 20px",
                 margin: "auto"
             }} type="text" />
-             <input placeholder="Иван Иванов" style={{
+             <input placeholder={blockStyles.input2.val} style={{
                 width: "50%",
                 height: "60px",
                 padding: "0 20px",
                 margin: "auto"
             }} type="text" />
-             <input placeholder="+7 999 999 99 99" style={{
+             <input placeholder={blockStyles.input3.val} style={{
                 width: "50%",
                 height: "60px",
                 padding: "0 20px",
@@ -34,11 +42,13 @@ export default function FormBlock({}) {
                 height: "45px",
                 borderRadius: "20px",
                 border: "none",
-                color: "#FFF",
+                color: blockStyles.btn.color,
+                fontSize: blockStyles.btn.fontSize,
                 cursor: "pointer",
                 margin: "auto",
-                background: "#2971f5"
-            }}>Отправить</button>
+                background: blockStyles.btn.bg
+            }}>{blockStyles.btn.val}</button>
+            <Popup Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} active={modalActive} setActive={() => setModalActive()} pos={modalPos} blockStyles={blockStyles} setBlockStyles={(e) => setBlockStyles(e)} />
         </div>
     )
 }

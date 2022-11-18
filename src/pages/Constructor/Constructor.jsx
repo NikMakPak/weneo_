@@ -20,10 +20,10 @@ export default function Constructor() {
     // Поместить объект стилей в отдельный файл
     const style = {
         overflow: preview ? "" : "auto",
-        marginTop: preview ? "" :"20px",
+        marginTop: preview ? "" : "20px",
         marginLeft: preview ? "" : "5%",
-        width: preview ? "100%" :"75%",
-        height: preview ? "" :"90vh",
+        width: preview ? "100%" : "75%",
+        height: preview ? "" : "90vh",
         background: "#FFF",
         boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.25)",
         transition: "0.3s"
@@ -51,7 +51,7 @@ export default function Constructor() {
                 {/* {isActive ? 'Release to drop' : 'Drag a box here'} */}
                 {
                     containerItems.length ? containerItems.map((e) =>
-                        e.kind === "form" ? <FormBlock /> :
+                        e.kind === "form" ? <FormBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)} Items={e} /> :
                             e.kind === "nav" ? <NavBar containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)} Items={e} /> :
                                 e.kind === "header" ? <Header containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)} Items={e} /> :
                                     e.kind === "title" ? <TitleBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)} Items={e} /> :
@@ -108,7 +108,15 @@ export default function Constructor() {
                                     value.includes("0") &&
                                     <>
 
-                                        <SidebarBlock kind={"form"} setContainerItems={setContainerItems} title={"Стандартная Форма"} descr={"Основной блок с формой"} />
+                                        <SidebarBlock
+                                            kind={"form"}
+                                            setContainerItems={setContainerItems}
+                                            title={"Стандартная Форма"}
+                                            descr={"Основной блок с формой"}
+                                            elements={{
+                                                input1: { val: "Ivan@mail.ru" }, input2: { val: "Иван Иванов" }, input3: { val: "+7 999 999 99 99" },
+                                                btn: { val: "Отправить", fontSize: "15px", bg: "#2971f5", color: "#FFF" }
+                                            }} />
                                     </>
                                 }
                             </div>
@@ -196,9 +204,9 @@ export default function Constructor() {
                 </div>
             </>
             : <>
-                <h5 onClick={() => setPreview(false)} style={{textAlign:"center", cursor: "pointer", margin: "5px 0"}}>Завершить просмотр</h5>
+                <h5 onClick={() => setPreview(false)} style={{ textAlign: "center", cursor: "pointer", margin: "5px 0" }}>Завершить просмотр</h5>
                 <DndProvider backend={HTML5Backend}>
-                    <ConstuctWindow/>
+                    <ConstuctWindow />
                 </DndProvider>
 
             </>
