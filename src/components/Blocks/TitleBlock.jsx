@@ -8,7 +8,7 @@ export default function TitleBlock({ Items, setContainerItems, containerItems })
     const [blockStyles, setBlockStyles] = React.useState(Items.elements)
     const onClickEdit = (event) => {
         console.log(event);
-        setModalPos({ posX: event.pageX, posY: event.pageY })
+        setModalPos({ posX: event.clientX, posY: event.clientY})
         setModalActive(true)
 
     }
