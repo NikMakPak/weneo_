@@ -3,6 +3,9 @@
 
 .headerBar {
     @include clear;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     height: 59px;
@@ -72,6 +75,10 @@
 }
 
 .sideBar {
+    z-index: 0;
+    position: fixed;
+    margin-top: 60px;
+    right: 0;
     box-sizing: border-box;
     padding-top: 20px;
     height: 93vh;

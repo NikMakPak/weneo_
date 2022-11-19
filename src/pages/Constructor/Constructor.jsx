@@ -20,10 +20,10 @@ export default function Constructor() {
     // Поместить объект стилей в отдельный файл
     const style = {
         overflow: preview ? "" : "auto",
-        marginTop: preview ? "" : "20px",
+        marginTop: preview ? "" : "75px",
         marginLeft: preview ? "" : "5%",
         width: preview ? "100%" : "75%",
-        height: preview ? "" : "90vh",
+        minHeight: preview ? "" : "90vh",
         background: "#FFF",
         boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.25)",
         transition: "0.3s"
