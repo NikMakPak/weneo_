@@ -16,6 +16,17 @@ export default function Constructor() {
     const [value, setValue] = React.useState([]);
     const [preview, setPreview] = React.useState(false);
     const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
+    const [containerStates, setContainerStates] = React.useState([1,2])
+    const [currentState, setCurrentState] = React.useState(containerStates.length)
+
+    console.log(currentState);
+    React.useEffect(() => {
+        setCurrentState(containerStates.length === 0 ? 0 : containerStates.length)
+        setCurrentState(prev => prev -1)
+      setContainerStates(prev => [prev[prev.length-2],prev[prev.length-1], containerItems])
+    }, [containerItems])
+    console.log(containerStates);
+    
 
     // Поместить объект стилей в отдельный файл
     const style = {
@@ -73,8 +84,8 @@ export default function Constructor() {
                         <h4 style={{ fontSize: "18px" }}>Название нового сайта</h4>
                     </div>
                     <div className={styles.headRBar}>
-                        <img src="./img/undo.svg" alt="" />
-                        <img style={{ transform: "rotateY(180deg)" }} src="./img/undo.svg" alt="" />
+                        <img onClick={()=> {return setContainerItems(containerStates[currentState-1])}}  src="./img/undo.svg" alt="" />
+                        <img onClick={()=> {return setContainerItems(containerStates[currentState-1])}} style={{ transform: "rotateY(180deg)" }} src="./img/undo.svg" alt="" />
                         <img onClick={() => setPreview(true)} src="./img/preview.svg" alt="" />
                         <img src="./img/person_min.svg" alt="" />
                         <img src="./img/settings.svg" alt="" />
