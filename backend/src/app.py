@@ -31,7 +31,7 @@ def downloadBundle(id):
     user = db.find_one({'_id': ObjectId(id)})
     return jsonify({'project-bundle':user['project-bundle']})
 
-@app.route("/nlp")
+@app.route("/nlp", methods=['POST'])
 def text_nlp():
     text = request.json['text_analize']
     if(text!=''):

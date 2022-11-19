@@ -1,4 +1,5 @@
 import React from "react"
+import axios from "axios";
 import styles from './Constructor.module.scss';
 import SidebarBlock from "../../components/SidebarBlock/SidebarBlock";
 // import Block from "../../components/Blocks/Block/Block";
@@ -18,14 +19,33 @@ export default function Constructor() {
     const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
     const [containerStates, setContainerStates] = React.useState([1,2])
     const [currentState, setCurrentState] = React.useState(containerStates.length)
+    
+    React.useEffect(() => {
+    async function fetchData() {
+        // You can await here
+       await axios.post('http://127.0.0.1:5000/nlp', {
+            text_analize: 'Веб-приложение — клиент-серверное приложение, в котором клиент взаимодействует с веб-сервером при помощи браузера. Логика веб-приложения распределена между сервером и клиентом, хранение данных осуществляется, преимущественно, на сервере, обмен информацией происходит по сети. Одним из преимуществ такого подхода является тот факт, что клиенты не зависят от конкретной операционной системы пользователя, поэтому веб-приложения являются межплатформенными службами.',
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          })
+        // ...
+      }
+      fetchData()
+         
+      
+        }, [])
+    
 
-    console.log(currentState);
     React.useEffect(() => {
         setCurrentState(containerStates.length === 0 ? 0 : containerStates.length)
         setCurrentState(prev => prev -1)
       setContainerStates(prev => [prev[prev.length-2],prev[prev.length-1], containerItems])
     }, [containerItems])
-    console.log(containerStates);
+   
     
 
     // Поместить объект стилей в отдельный файл
