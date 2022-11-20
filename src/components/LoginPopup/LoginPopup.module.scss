@@ -1,0 +1,83 @@
+.modal {
+  display: none;
+}
+
+.active {
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(1);
+}
+
+.modal__content {
+  border-radius: 12px;
+  background-color: white;
+  padding: 32px 62px;
+  height: calc(100vh - 59px);
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+
+  div {
+    width: 100%;
+  }
+}
+
+.input {
+  width: 100%;
+  background: #FFFFFF;
+  border: 4px solid #C2D6DA;
+  border-radius: 6px;
+  padding-left: 4px;
+  height: 50px;
+  cursor: pointer;
+
+}
+
+form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.input::placeholder {
+  font-size: 14px;
+}
+
+.label {
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 29px;
+  color: #558F9A;
+}
+
+.submit {
+  background: linear-gradient(315deg, #0060FF 0%, #56D3EC 97.34%);
+  border-radius: 20px;
+  padding: 20px 80px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  font-weight: 600;
+  font-size: 16px;
+  color: #FFFFFF;
+  cursor: pointer;
+}
+
+.hasAccount {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 29px;
+  color: #008EAA;
+}
