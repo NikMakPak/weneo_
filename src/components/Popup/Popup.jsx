@@ -5,7 +5,6 @@ import styles from './Popup.module.scss'
 
 const Popup = ({ active, setActive, pos, blockStyles, setBlockStyles, Items, containerItems, setContainerItems }) => {
   const [switchSatt, setSwitchSatt] = React.useState(false)
-  console.log(Object.entries(blockStyles))
   const updateContainer = () => {
     return setContainerItems(containerItems.map(o => {
       if (o.id === Items.id) {
@@ -13,6 +12,7 @@ const Popup = ({ active, setActive, pos, blockStyles, setBlockStyles, Items, con
       }
       return o;
     }))
+    
   }
   const deleteBlock = () => {
     return setContainerItems(containerItems.filter((o) => o.id !== Items.id))

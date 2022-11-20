@@ -7,7 +7,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
     const [blockStyles, setBlockStyles] = React.useState(Items.elements)
     const onClickEdit = (event) => {
         console.log(event);
-        setModalPos({ posX: event.pageX, posY: event.pageY })
+        setModalPos({ posX: event.clientX, posY: event.clientY})
         setModalActive(true)
 
     }
@@ -18,7 +18,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
         <div onClick={onClickEdit} style={{
             padding: "50px",
             width: "100%",
-            height: "95vh",
+            height: "100vh",
             display: 'flex',
             background: "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/header-img.jpg') center",
             backgroundSize: "cover",
