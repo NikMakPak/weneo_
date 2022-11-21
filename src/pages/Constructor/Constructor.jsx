@@ -6,9 +6,9 @@ import SidebarBlock from "../../components/SidebarBlock/SidebarBlock";
 // import MiniBlock from "../../components/Blocks/MiniBlock/MiniBlock";
 import TextBlock from "../../components/Blocks/TextBlock";
 import FormBlock from "../../components/Blocks/FormBlock";
-import {useDrop, DndProvider} from 'react-dnd'
-import {HTML5Backend} from 'react-dnd-html5-backend'
-import {ItemTypes} from "../../components/SidebarBlock/ItemTypes";
+import { useDrop, DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
+import { ItemTypes } from "../../components/SidebarBlock/ItemTypes";
 import NavBar from "../../components/Blocks/Block/NavBar";
 import Header from "../../components/Blocks/Header";
 import TitleBlock from "../../components/Blocks/TitleBlock";
@@ -21,7 +21,9 @@ export default function Constructor() {
   const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
   const [containerStates, setContainerStates] = React.useState([1, 2])
   const [currentState, setCurrentState] = React.useState(containerStates.length)
-  const [modalActive, setModalActive] = React.useState(false) // вызов модального окна для логина
+  const [modalActive, setModalActive] = React.useState(false)
+  const [setts, setSetts] = React.useState(false)
+  const [impVal, setImpVal] = React.useState([])
 
 
   React.useEffect(() => {
@@ -42,11 +44,12 @@ export default function Constructor() {
     boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.25)",
     transition: "0.3s"
   }
+
   //Мб вынести в отдельный модуль
   const ConstuctWindow = () => {
-    const [{canDrop, isOver}, drop] = useDrop(() => ({
+    const [{ canDrop, isOver }, drop] = useDrop(() => ({
       accept: ItemTypes.BOX,
-      drop: () => ({name: 'Dustbin'}),
+      drop: () => ({ name: 'Dustbin' }),
       collect: (monitor) => ({
         isOver: monitor.isOver(),
         canDrop: monitor.canDrop(),
@@ -61,30 +64,30 @@ export default function Constructor() {
     }
     console.log(containerItems);
     return (
-      <div ref={drop} style={{...style, backgroundColor}} data-testid="dustbin">
+      <div ref={drop} style={{ ...style, backgroundColor }} data-testid="dustbin">
         {/* {isActive ? 'Release to drop' : 'Drag a box here'} */}
         {
           containerItems.length ? containerItems.map((e) =>
-              e.kind === "form" ?
-                <FormBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
-                           Items={e}/> :
-                e.kind === "nav" ?
-                  <NavBar containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
-                          Items={e}/> :
-                  e.kind === "header" ?
-                    <Header containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
-                            Items={e}/> :
-                    e.kind === "title" ?
-                      <TitleBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
-                                  Items={e}/> :
-                      e.kind === "post" ?
-                        <PostBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
-                                   Items={e}/> :
-                        e.kind === "text" ?
-                          <TextBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
-                                     Items={e}/> :
-                          <></>) :
-            <h3 style={{textAlign: "center", marginTop: "20%"}}>Перетащите сюда блок</h3>
+            e.kind === "form" ?
+              <FormBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
+                Items={e} /> :
+              e.kind === "nav" ?
+                <NavBar containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
+                  Items={e} /> :
+                e.kind === "header" ?
+                  <Header containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
+                    Items={e} /> :
+                  e.kind === "title" ?
+                    <TitleBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
+                      Items={e} /> :
+                    e.kind === "post" ?
+                      <PostBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
+                        Items={e} /> :
+                      e.kind === "text" ?
+                        <TextBlock containerItems={containerItems} setContainerItems={(obj) => setContainerItems(obj)}
+                          Items={e} /> :
+                        <></>) :
+            <h3 style={{ textAlign: "center", marginTop: "20%" }}>Перетащите сюда блок</h3>
         }
       </div>
     )
@@ -96,19 +99,19 @@ export default function Constructor() {
       <>
         <div className={styles.headerBar}>
           <div className={styles.headLBar}>
-            <img width={36} height={36} src="./img/mini_logo.png" alt=""/>
-            <h4 style={{fontSize: "18px"}}>Название нового сайта</h4>
+            <img width={36} height={36} src="./img/mini_logo.png" alt="" />
+            <h4 style={{ fontSize: "18px" }}>Название нового сайта</h4>
           </div>
           <div className={styles.headRBar}>
             <img onClick={() => {
               return setContainerItems(containerStates[currentState - 1])
-            }} src="./img/undo.svg" alt=""/>
+            }} src="./img/undo.svg" alt="" />
             <img onClick={() => {
               return setContainerItems(containerStates[currentState - 1])
-            }} style={{transform: "rotateY(180deg)"}} src="./img/undo.svg" alt=""/>
-            <img onClick={() => setPreview(true)} src="./img/preview.svg" alt=""/>
-            <img src="./img/person_min.svg" onClick={() => setModalActive(true)} alt=""/>
-            <img src="./img/settings.svg" alt=""/>
+            }} style={{ transform: "rotateY(180deg)" }} src="./img/undo.svg" alt="" />
+            <img onClick={() => setPreview(true)} src="./img/preview.svg" alt="" />
+            <img src="./img/person_min.svg" onClick={() => setModalActive(true)} alt="" />
+            <img onClick={() => setSetts(!setts)} src="./img/settings.svg" alt="" />
             <div className={styles.barSelector}>
               <ul>
                 <li>Контент</li>
@@ -117,11 +120,24 @@ export default function Constructor() {
             </div>
           </div>
         </div>
+        {
+          setts && <div className={styles.contmodal} onClick={() => setSetts(!setts)}>
+          <div  onClick={(e) => e.stopPropagation()} className={styles.sattsStyle}>
+          <h4>Экспорт</h4>
+          <p>Скопируйте конфигурацию вашего проекта и сохраните в надежном месте</p>
+          <input type="text" defaultValue={JSON.stringify(containerItems)} />
+          <h4>Импорт</h4>
+          <p>Вставьте конфигурацию вашего проекта и нажмите кнопку "Применить"</p>
+          <input type="text" onChange={(v) => setImpVal(v.target.value)}/>
+          <button onClick={() => {setContainerItems(JSON.parse(impVal)); setSetts(!setts)}}>Применить</button>
+        </div>
+          </div>
+        }
         <div className={styles.construct}>
           <DndProvider backend={HTML5Backend}>
 
 
-            <ConstuctWindow/>
+            <ConstuctWindow />
 
 
             <div className={styles.sideBar}>
@@ -132,9 +148,9 @@ export default function Constructor() {
               <div
                 onClick={() => setValue((prev) => !prev.includes("0") ? [...prev, "0"] : prev.filter((e) => e !== "0"))}
                 className={styles.select}>
-                <img src="./img/widgets.svg" alt=""/>
+                <img src="./img/widgets.svg" alt="" />
                 <h4>Формы</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt=""/>
+                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
               </div>
               <div className={styles.sideBarContent}>
                 {
@@ -147,18 +163,18 @@ export default function Constructor() {
                       title={"Стандартная Форма"}
                       descr={"Основной блок с формой"}
                       elements={{
-                        input1: {val: "Ivan@mail.ru"}, input2: {val: "Иван Иванов"}, input3: {val: "+7 999 999 99 99"},
-                        btn: {val: "Отправить", fontSize: "15px", bg: "#2971f5", color: "#FFF"}
-                      }}/>
+                        input1: { val: "Ivan@mail.ru" }, input2: { val: "Иван Иванов" }, input3: { val: "+7 999 999 99 99" },
+                        btn: { val: "Отправить", fontSize: "15px", bg: "#2971f5", color: "#FFF" }
+                      }} />
                   </>
                 }
               </div>
               <div
                 onClick={() => setValue((prev) => !prev.includes("1") ? [...prev, "1"] : prev.filter((e) => e !== "1"))}
                 className={styles.select}>
-                <img src="./img/widgets.svg" alt=""/>
+                <img src="./img/widgets.svg" alt="" />
                 <h4>Навигация</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt=""/>
+                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
               </div>
               <div className={styles.sideBarContent}>
                 {
@@ -170,17 +186,17 @@ export default function Constructor() {
                       title={"Стандартная навигация"}
                       descr={"Блок с навигацией"}
                       elements={{
-                        li1: {val: "О нас"}, li2: {val: "Технологии"}, li3: {val: "Заказать"},
-                      }}/>
+                        li1: { val: "О нас" }, li2: { val: "Технологии" }, li3: { val: "Заказать" },
+                      }} />
                   </>
                 }
               </div>
               <div
                 onClick={() => setValue((prev) => !prev.includes("2") ? [...prev, "2"] : prev.filter((e) => e !== "2"))}
                 className={styles.select}>
-                <img src="./img/widgets.svg" alt=""/>
+                <img src="./img/widgets.svg" alt="" />
                 <h4>Шапки</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt=""/>
+                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
               </div>
               <div className={styles.sideBarContent}>
                 {
@@ -194,23 +210,23 @@ export default function Constructor() {
                       title={"Стандартная шапка"}
                       descr={"Блок с стандартной шапкой"}
                       elements={{
-                        h1: {val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF",},
+                        h1: { val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF", },
                         h4: {
                           val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.",
                           fontSize: "20px",
                           color: "#FFF"
                         },
-                        btn: {val: "Создать", fontSize: "15px", bg: "#2971F5", color: "#FFF"}
-                      }}/>
+                        btn: { val: "Создать", fontSize: "15px", bg: "#2971F5", color: "#FFF" }
+                      }} />
                   </>
                 }
               </div>
               <div
                 onClick={() => setValue((prev) => !prev.includes("3") ? [...prev, "3"] : prev.filter((e) => e !== "3"))}
                 className={styles.select}>
-                <img src="./img/widgets.svg" alt=""/>
+                <img src="./img/widgets.svg" alt="" />
                 <h4>Текст</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt=""/>
+                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
               </div>
               <div className={styles.sideBarContent}>
                 {
@@ -223,8 +239,8 @@ export default function Constructor() {
                       title={"Стандартная заголовок"}
                       descr={"Блок с стандартным заголовком"}
                       elements={{
-                        h1: {val: "Заголовок", fontSize: "35px", color: "#000",},
-                      }}/>
+                        h1: { val: "Заголовок", fontSize: "35px", color: "#000", },
+                      }} />
 
                     <SidebarBlock
                       kind={"text"}
@@ -237,7 +253,7 @@ export default function Constructor() {
                           fontSize: "25px",
                           color: "#000",
                         },
-                      }}/>
+                      }} />
 
                     <SidebarBlock
                       kind={"post"}
@@ -254,7 +270,7 @@ export default function Constructor() {
                         p: {
                           val: "Веб-сайт как система электронных документов (файлов данных и кода) может принадлежать частному лицу или организации и быть доступным в компьютерной сети под общим доменным именем и IP-адресом или локально на одном компьютере. В статье журнала «Хозяйство и право» также было высказано мнение, что каждый сайт имеет своё название, которое при этом не следует путать с доменным именем. С точки зрения авторского права сайт является составным произведением, соответственно название сайта подлежит охране наряду с названиями всех прочих произведений.Все сайты в совокупности составляют Всемирную паутину, где коммуникация (паутина) объединяет сегменты информации мирового сообщества в единое целое — базу данных и коммуникации планетарного масштаба. Для прямого доступа клиентов к сайтам на серверах был специально разработан протокол HTTP.",
                         },
-                      }}/>
+                      }} />
 
                   </>
                 }
@@ -268,10 +284,10 @@ export default function Constructor() {
         </div>
       </>
       : <>
-        <h5 onClick={() => setPreview(false)} style={{textAlign: "center", cursor: "pointer", margin: "5px 0"}}>Завершить
+        <h5 onClick={() => setPreview(false)} style={{ textAlign: "center", cursor: "pointer", margin: "5px 0" }}>Завершить
           просмотр</h5>
         <DndProvider backend={HTML5Backend}>
-          <ConstuctWindow/>
+          <ConstuctWindow />
         </DndProvider>
 
       </>
