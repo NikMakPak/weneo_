@@ -22,8 +22,7 @@ const Landing = () => {
               <h1><span>Инновационная</span> веб студия для вашего вашего <span>бизнеса</span></h1>
               <p>Cоздание нового или редизайне существующего проекта с помощью искусственного интеллекта и нашей
                 современной платформы.</p>
-              <button className={styles.btn}>Попробовать инновации <img src="./img/arrow.svg" alt=""
-                                                                        onClick={handleClick}/></button>
+              <button onClick={handleClick} className={styles.btn}>Попробовать инновации <img src="./img/arrow.svg" alt="" /></button>
             </div>
           </div>
         </div>
