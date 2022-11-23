@@ -74,3 +74,17 @@
         width: 100%;
     }
 }
+
+@media (max-width: 575px) {
+    .group{
+        width: 100%;
+        flex-direction: column;
+    }
+    .form{
+        margin: 0 auto;
+        width: 90%;
+        textarea {
+            width: 90vw;
+        }
+    }
+}

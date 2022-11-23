@@ -27,3 +27,16 @@
         color: #008EAA;
     }
 }
+
+@media (max-width: 575px) {
+    .nav__list{
+        flex-direction: column;
+        width: 80%;
+        li{
+            font-size: 23px;
+        }
+        img{
+            display: none;
+        }
+    }
+ }
