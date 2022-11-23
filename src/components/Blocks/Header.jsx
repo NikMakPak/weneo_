@@ -28,7 +28,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
             <div style={{
                 margin: "auto",
                 textAlign: "center",
-                width: "50%",
+                width: "70%",
                 color: "#FFF",
             }}>
                 <h1 style={{ fontSize: blockStyles.h1.fontSize, color: blockStyles.h1.color }}>{blockStyles.h1.val}</h1>
@@ -41,7 +41,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
                     border: "none",
                     color: blockStyles.btn.color,
                     cursor: "pointer",
-                    margin: "auto",
+                    margin: "0 auto",
                     background: blockStyles.btn.bg
                 }}>{blockStyles.btn.val}</button>
             </div>

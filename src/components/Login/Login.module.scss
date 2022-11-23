@@ -22,6 +22,7 @@
   padding: 32px 62px;
   height: calc(80vh - 59px);
   width: 27vw;
+  min-width: 360px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -85,4 +86,11 @@ form {
   font-size: 14px;
   line-height: 29px;
   color: #008EAA;
+}
+
+@media (max-width: 576px) {
+  .modal__content {
+    width: 100vw;
+    height: 100vh;
+  }
 }

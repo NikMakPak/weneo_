@@ -39,6 +39,7 @@ export default function Constructor() {
     marginTop: preview ? "" : "75px",
     marginLeft: preview ? "" : "5%",
     width: preview ? "100%" : "75%",
+    minWidth: "385px",
     minHeight: preview ? "" : "90vh",
     background: "#FFF",
     boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.25)",

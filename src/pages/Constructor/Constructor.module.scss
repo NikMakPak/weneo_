@@ -182,3 +182,25 @@
   right: 0;
   z-index: 5;
 }
+
+@media (max-width: 570px) {
+  .headLBar h4{
+    display: none;
+  }
+  .headRBar {
+    ul {
+      display: none;
+    }
+  }
+  .sideBar{
+    display: none;
+  }
+  .sattsStyle {
+    width: 50%;
+    margin-left: 50%;
+  }
+  .construct{
+   justify-content: center;
+   padding-right: 20px;
+  }
+}
