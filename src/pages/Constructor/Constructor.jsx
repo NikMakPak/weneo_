@@ -38,7 +38,7 @@ export default function Constructor() {
   const style = {
     overflow: preview ? "" : "auto",
     marginTop: preview ? "" : "68px",
-    width: !rSideBar ? "100%" : "85%",
+    width: !rSideBar || preview ? "100%" : "85%",
     minWidth: "385px",
     minHeight: preview ? "" : "90vh",
     background: "#FFF",
