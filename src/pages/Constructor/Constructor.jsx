@@ -18,6 +18,7 @@ import Login from "../../components/Login/Login";
 export default function Constructor() {
   const [value, setValue] = React.useState([]);
   const [preview, setPreview] = React.useState(false);
+  const [rSideBar, setRsideBar] = React.useState(false);
   const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
   const [containerStates, setContainerStates] = React.useState([1, 2])
   const [currentState, setCurrentState] = React.useState(containerStates.length)
@@ -36,9 +37,8 @@ export default function Constructor() {
   // Поместить объект стилей в отдельный файл
   const style = {
     overflow: preview ? "" : "auto",
-    marginTop: preview ? "" : "75px",
-    marginLeft: preview ? "" : "5%",
-    width: preview ? "100%" : "75%",
+    marginTop: preview ? "" : "68px",
+    width: !rSideBar ? "100%" : "85%",
     minWidth: "385px",
     minHeight: preview ? "" : "90vh",
     background: "#FFF",
@@ -100,38 +100,65 @@ export default function Constructor() {
       <>
         <div className={styles.headerBar}>
           <div className={styles.headLBar}>
-            <img width={36} height={36} src="./img/mini_logo.png" alt="" />
-            <h4 style={{ fontSize: "18px" }}>Название нового сайта</h4>
+            <div className={styles.opnLbar}>
+              <img width={18} height={12} src="./img/opnLbar.svg" alt="Opn" />
+              <div className={styles.opnLbarCont}>
+                <h4 style={{ fontSize: "14px" }}>Мой сайт</h4>
+                <p>testsite.weneo.io</p>
+              </div>
+              <img width={23} height={52} src="./img/opnLbarRect.svg" alt="" />
+            </div>
+            <div className={styles.opnPages}>
+              <h4 style={{ fontSize: "14px" }}>Главная</h4>
+              <p>страница<img src="./img/arrBottom.svg" alt="" /></p>
+            </div>
           </div>
           <div className={styles.headRBar}>
-            <img onClick={() => {
-              return setContainerItems(containerStates[currentState - 1])
-            }} src="./img/undo.svg" alt="" />
-            <img onClick={() => {
-              return setContainerItems(containerStates[currentState - 1])
-            }} style={{ transform: "rotateY(180deg)" }} src="./img/undo.svg" alt="" />
-            <img onClick={() => setPreview(true)} src="./img/preview.svg" alt="" />
-            <img src="./img/person_min.svg" onClick={() => setModalActive(true)} alt="" />
-            <img onClick={() => setSetts(!setts)} src="./img/settings.svg" alt="" />
-            <div className={styles.barSelector}>
-              <ul>
-                <li>Контент</li>
-                <li>Страницы</li>
-              </ul>
+            <div className={styles.undo}>
+              <img onClick={() => {
+                return setContainerItems(containerStates[currentState - 1])
+              }} src="./img/undo.svg" alt="" />
+              <div className={styles.undoLine}></div>
+              <img onClick={() => {
+                return setContainerItems(containerStates[currentState - 1])
+              }} style={{ transform: "rotateY(180deg)" }} src="./img/undo.svg" alt="" />
             </div>
+            <div className={styles.prewiew}>
+              <img onClick={() => setPreview(true)} src="./img/eye.svg" alt="" />
+            </div>
+            <div onClick={() => setRsideBar(true)} className={styles.newBlock}>
+              <h4>Новый блок</h4>
+              <img src="./img/plus.svg" onClick={() => setModalActive(true)} alt="" />
+            </div>
+            <div className={styles.uploadBar}>
+              <div className={styles.uploadBarCont}>
+                <p><img src="./img/save.svg" alt="" />минуту назад</p>
+                <p><img src="./img/invEye.svg" alt="" />01.12.22 13:26</p>
+              </div>
+              <div onClick={() => setSetts(!setts)} className={styles.uploadBtn}>
+                <img src="./img/upload.svg" alt="" />
+              </div>
+            </div>
+            {
+              rSideBar &&
+              <div className={styles.barSelector}>
+                <h4>Добавить блок</h4>
+                <img onClick={() => setRsideBar(false)} src="./img/cross.svg" alt="x" />
+              </div>
+            }
           </div>
         </div>
         {
           setts && <div className={styles.contmodal} onClick={() => setSetts(!setts)}>
-          <div  onClick={(e) => e.stopPropagation()} className={styles.sattsStyle}>
-          <h4>Экспорт</h4>
-          <p>Скопируйте конфигурацию вашего проекта и сохраните в надежном месте</p>
-          <input type="text" defaultValue={JSON.stringify(containerItems)} />
-          <h4>Импорт</h4>
-          <p>Вставьте конфигурацию вашего проекта и нажмите кнопку "Применить"</p>
-          <input type="text" onChange={(v) => setImpVal(v.target.value)}/>
-          <button onClick={() => {setContainerItems(JSON.parse(impVal)); setSetts(!setts)}}>Применить</button>
-        </div>
+            <div onClick={(e) => e.stopPropagation()} className={styles.sattsStyle}>
+              <h4>Экспорт</h4>
+              <p>Скопируйте конфигурацию вашего проекта и сохраните в надежном месте</p>
+              <input type="text" defaultValue={JSON.stringify(containerItems)} />
+              <h4>Импорт</h4>
+              <p>Вставьте конфигурацию вашего проекта и нажмите кнопку "Применить"</p>
+              <input type="text" onChange={(v) => setImpVal(v.target.value)} />
+              <button onClick={() => { setContainerItems(JSON.parse(impVal)); setSetts(!setts) }}>Применить</button>
+            </div>
           </div>
         }
         <div className={styles.construct}>
@@ -141,145 +168,156 @@ export default function Constructor() {
             <ConstuctWindow />
 
 
-            <div className={styles.sideBar}>
-              {/* <img style={{ transform: `rotate(${rotateWidg}deg)` }} src="./img/widgets.svg" alt="" />
+            {
+              rSideBar &&
+              <div className={styles.sideBar}>
+                {/* <img style={{ transform: `rotate(${rotateWidg}deg)` }} src="./img/widgets.svg" alt="" />
                     <select value={value} onChange={(event) => { setValue(event.target.value); setRotateWidg(prev => prev + 90) }}>
                         {options}
                     </select> */}
-              <div
-                onClick={() => setValue((prev) => !prev.includes("0") ? [...prev, "0"] : prev.filter((e) => e !== "0"))}
-                className={styles.select}>
-                <img src="./img/widgets.svg" alt="" />
-                <h4>Формы</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
+                <div
+                  onClick={() => setValue((prev) => !prev.includes("0") ? [...prev, "0"] : prev.filter((e) => e !== "0"))}
+                  className={styles.select}>
+                  <div className={styles.selectCont}>
+                    <img src="./img/form.svg" alt="" />
+                    <h4>Форма</h4>
+                  </div>
+                  <img width={14} height={11} src="./img/arrRight.svg" alt="" />
+                </div>
+                <div className={styles.sideBarContent}>
+                  {
+                    value.includes("0") &&
+                    <>
+
+                      <SidebarBlock
+                        kind={"form"}
+                        setContainerItems={setContainerItems}
+                        title={"Стандартная Форма"}
+                        descr={"Основной блок с формой"}
+                        elements={{
+                          input1: { val: "Ivan@mail.ru" }, input2: { val: "Иван Иванов" }, input3: { val: "+7 999 999 99 99" },
+                          btn: { val: "Отправить", fontSize: "15px", bg: "#2971f5", color: "#FFF" }
+                        }} />
+                    </>
+                  }
+                </div>
+                <div
+                  onClick={() => setValue((prev) => !prev.includes("1") ? [...prev, "1"] : prev.filter((e) => e !== "1"))}
+                  className={styles.select}>
+                  <div className={styles.selectCont}>
+                    <img src="./img/nav.svg" alt="" />
+                    <h4>Навигация</h4>
+                  </div>
+                  <img width={14} height={11} src="./img/arrRight.svg" alt="" />
+                </div>
+                <div className={styles.sideBarContent}>
+                  {
+                    value.includes("1") &&
+                    <>
+                      <SidebarBlock
+                        setContainerItems={setContainerItems}
+                        kind={"nav"}
+                        title={"Стандартная навигация"}
+                        descr={"Блок с навигацией"}
+                        elements={{
+                          li1: { val: "О нас" }, li2: { val: "Технологии" }, li3: { val: "Заказать" },
+                        }} />
+                    </>
+                  }
+                </div>
+                <div
+                  onClick={() => setValue((prev) => !prev.includes("2") ? [...prev, "2"] : prev.filter((e) => e !== "2"))}
+                  className={styles.select}>
+                  <div className={styles.selectCont}>
+                    <img src="./img/cover.svg" alt="" />
+                    <h4>Обложка</h4>
+                  </div>
+                  <img width={14} height={11} src="./img/arrRight.svg" alt="" />
+                </div>
+                <div className={styles.sideBarContent}>
+                  {
+                    value.includes("2") &&
+
+                    <>
+                      <SidebarBlock
+                        kind={"header"}
+                        containerItems={containerItems}
+                        setContainerItems={setContainerItems}
+                        title={"Стандартная шапка"}
+                        descr={"Блок с стандартной шапкой"}
+                        elements={{
+                          h1: { val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF", },
+                          h4: {
+                            val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.",
+                            fontSize: "20px",
+                            color: "#FFF"
+                          },
+                          btn: { val: "Создать", fontSize: "15px", bg: "#2971F5", color: "#FFF" }
+                        }} />
+                    </>
+                  }
+                </div>
+                <div
+                  onClick={() => setValue((prev) => !prev.includes("3") ? [...prev, "3"] : prev.filter((e) => e !== "3"))}
+                  className={styles.select}>
+                  <div className={styles.selectCont}>
+                    <img src="./img/text.svg" alt="" />
+                    <h4>Текст</h4>
+                  </div>
+                  <img width={14} height={11} src="./img/arrRight.svg" alt="" />
+                </div>
+                <div className={styles.sideBarContent}>
+                  {
+                    value.includes("3") &&
+
+                    <>
+                      <SidebarBlock
+                        kind={"title"}
+                        setContainerItems={setContainerItems}
+                        title={"Стандартная заголовок"}
+                        descr={"Блок с стандартным заголовком"}
+                        elements={{
+                          h1: { val: "Заголовок", fontSize: "35px", color: "#000", },
+                        }} />
+
+                      <SidebarBlock
+                        kind={"text"}
+                        setContainerItems={setContainerItems}
+                        title={"Стандартный текст"}
+                        descr={"Блок с стандартным текстом"}
+                        elements={{
+                          p: {
+                            val: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur ut ea dignissimos, mollitia a. Eaque a ducimus, tenetur temporibus dolore perspiciatis veritatis exercitationem rem quidem natus et numquam? Quisquam.",
+                            fontSize: "25px",
+                            color: "#000",
+                          },
+                        }} />
+
+                      <SidebarBlock
+                        kind={"post"}
+                        setContainerItems={setContainerItems}
+                        title={"Постоблок AI"}
+                        descr={"Постоблок с созданием ключевых слов с помощью AI"}
+                        ai={true}
+                        elements={{
+
+                          title: {
+                            val: "Новая статья",
+                          },
+
+                          p: {
+                            val: "Веб-сайт как система электронных документов (файлов данных и кода) может принадлежать частному лицу или организации и быть доступным в компьютерной сети под общим доменным именем и IP-адресом или локально на одном компьютере. В статье журнала «Хозяйство и право» также было высказано мнение, что каждый сайт имеет своё название, которое при этом не следует путать с доменным именем. С точки зрения авторского права сайт является составным произведением, соответственно название сайта подлежит охране наряду с названиями всех прочих произведений.Все сайты в совокупности составляют Всемирную паутину, где коммуникация (паутина) объединяет сегменты информации мирового сообщества в единое целое — базу данных и коммуникации планетарного масштаба. Для прямого доступа клиентов к сайтам на серверах был специально разработан протокол HTTP.",
+                          },
+                        }} />
+
+                    </>
+                  }
+                </div>
+
+
+                {/* Сделать объекты для генерации блоков селектора*/}
               </div>
-              <div className={styles.sideBarContent}>
-                {
-                  value.includes("0") &&
-                  <>
-
-                    <SidebarBlock
-                      kind={"form"}
-                      setContainerItems={setContainerItems}
-                      title={"Стандартная Форма"}
-                      descr={"Основной блок с формой"}
-                      elements={{
-                        input1: { val: "Ivan@mail.ru" }, input2: { val: "Иван Иванов" }, input3: { val: "+7 999 999 99 99" },
-                        btn: { val: "Отправить", fontSize: "15px", bg: "#2971f5", color: "#FFF" }
-                      }} />
-                  </>
-                }
-              </div>
-              <div
-                onClick={() => setValue((prev) => !prev.includes("1") ? [...prev, "1"] : prev.filter((e) => e !== "1"))}
-                className={styles.select}>
-                <img src="./img/widgets.svg" alt="" />
-                <h4>Навигация</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
-              </div>
-              <div className={styles.sideBarContent}>
-                {
-                  value.includes("1") &&
-                  <>
-                    <SidebarBlock
-                      setContainerItems={setContainerItems}
-                      kind={"nav"}
-                      title={"Стандартная навигация"}
-                      descr={"Блок с навигацией"}
-                      elements={{
-                        li1: { val: "О нас" }, li2: { val: "Технологии" }, li3: { val: "Заказать" },
-                      }} />
-                  </>
-                }
-              </div>
-              <div
-                onClick={() => setValue((prev) => !prev.includes("2") ? [...prev, "2"] : prev.filter((e) => e !== "2"))}
-                className={styles.select}>
-                <img src="./img/widgets.svg" alt="" />
-                <h4>Шапки</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
-              </div>
-              <div className={styles.sideBarContent}>
-                {
-                  value.includes("2") &&
-
-                  <>
-                    <SidebarBlock
-                      kind={"header"}
-                      containerItems={containerItems}
-                      setContainerItems={setContainerItems}
-                      title={"Стандартная шапка"}
-                      descr={"Блок с стандартной шапкой"}
-                      elements={{
-                        h1: { val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF", },
-                        h4: {
-                          val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.",
-                          fontSize: "20px",
-                          color: "#FFF"
-                        },
-                        btn: { val: "Создать", fontSize: "15px", bg: "#2971F5", color: "#FFF" }
-                      }} />
-                  </>
-                }
-              </div>
-              <div
-                onClick={() => setValue((prev) => !prev.includes("3") ? [...prev, "3"] : prev.filter((e) => e !== "3"))}
-                className={styles.select}>
-                <img src="./img/widgets.svg" alt="" />
-                <h4>Текст</h4>
-                <img width={14} height={11} src="./img/select-arr.svg" alt="" />
-              </div>
-              <div className={styles.sideBarContent}>
-                {
-                  value.includes("3") &&
-
-                  <>
-                    <SidebarBlock
-                      kind={"title"}
-                      setContainerItems={setContainerItems}
-                      title={"Стандартная заголовок"}
-                      descr={"Блок с стандартным заголовком"}
-                      elements={{
-                        h1: { val: "Заголовок", fontSize: "35px", color: "#000", },
-                      }} />
-
-                    <SidebarBlock
-                      kind={"text"}
-                      setContainerItems={setContainerItems}
-                      title={"Стандартный текст"}
-                      descr={"Блок с стандартным текстом"}
-                      elements={{
-                        p: {
-                          val: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur ut ea dignissimos, mollitia a. Eaque a ducimus, tenetur temporibus dolore perspiciatis veritatis exercitationem rem quidem natus et numquam? Quisquam.",
-                          fontSize: "25px",
-                          color: "#000",
-                        },
-                      }} />
-
-                    <SidebarBlock
-                      kind={"post"}
-                      setContainerItems={setContainerItems}
-                      title={"Постоблок AI"}
-                      descr={"Постоблок с созданием ключевых слов с помощью AI"}
-                      ai={true}
-                      elements={{
-
-                        title: {
-                          val: "Новая статья",
-                        },
-
-                        p: {
-                          val: "Веб-сайт как система электронных документов (файлов данных и кода) может принадлежать частному лицу или организации и быть доступным в компьютерной сети под общим доменным именем и IP-адресом или локально на одном компьютере. В статье журнала «Хозяйство и право» также было высказано мнение, что каждый сайт имеет своё название, которое при этом не следует путать с доменным именем. С точки зрения авторского права сайт является составным произведением, соответственно название сайта подлежит охране наряду с названиями всех прочих произведений.Все сайты в совокупности составляют Всемирную паутину, где коммуникация (паутина) объединяет сегменты информации мирового сообщества в единое целое — базу данных и коммуникации планетарного масштаба. Для прямого доступа клиентов к сайтам на серверах был специально разработан протокол HTTP.",
-                        },
-                      }} />
-
-                  </>
-                }
-              </div>
-
-
-              {/* Сделать объекты для генерации блоков селектора*/}
-            </div>
+            }
 
           </DndProvider>
         </div>

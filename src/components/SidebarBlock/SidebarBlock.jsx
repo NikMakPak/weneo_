@@ -10,7 +10,7 @@ const style = {
     boxSizing: "border-box",
     marginBottom: "10px",
     transition: "$T_TIME",
-    display: "flex"
+    display: "flex",
   }
 
 
@@ -32,7 +32,7 @@ export const SidebarBlock = function Box({title,descr, kind, containerItems, set
     const opacity = isDragging ? 0.4 : 1
     return (
         <div ref={drag} style={{ ...style, opacity }} data-testid={`box`}>
-            <img src='./img/grid_view.svg' alt="icon" />
+            <img style={{marginRight: "10px"}} src='./img/grid_view.svg' alt="icon" />
             <div className={styles.content}>
                 <h4>{title}</h4>
                 <p>{descr}</p>

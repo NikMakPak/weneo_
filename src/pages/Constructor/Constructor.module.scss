@@ -27,53 +27,187 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  height: 59px;
+  height: 68px;
   background: #FFF;
 
-  img {
-    width: 36px;
-    height: 36px;
-  }
 }
 
 .headLBar {
-  margin-left: 20px;
   display: flex;
   align-items: center;
+}
 
-  img {
-    margin-right: 30px;
+.opnLbar{
+  z-index: 2;
+  box-sizing: border-box;
+  padding-left: 13px;
+  border-radius: 15px 0 0 15px;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 8px;
+  width: 143px;
+  height: 52px;
+  background: #67A5EB;
+  color: #FFFFFF;
+  h4 {
+    line-height: 20px;
+  }
+  p{
+    margin: 0;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  img{
+    margin-right: 10px;
+    cursor: pointer;
+  }
+}
+.opnPages{
+  cursor: pointer;
+  background: #F2F3F5;
+  height: 52px;
+  z-index: 1;
+  width: 130px;
+  padding-left: 30px;
+  border-radius: 0 15px 15px 0;
+  padding-top: 7px;
+  h4{
+    line-height: 20px;
+  }
+  p{
+    img{
+      margin-left: 6px;
+    }
+  }
+}
+.undo{
+  margin-right: 8px;
+  width: 88px;
+  height: 36px;
+  background: #F2F3F5;
+  display: flex;
+  justify-content: center;
+  border-radius: 90px;
+  align-items: center;
+  img{
+    width: 20px;
+    height: 9;
+    cursor: pointer;
+  }
+}
+.undoLine{
+  margin-left: 9px;
+  margin-right: 9px;
+  height: 20px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+}
+
+.prewiew {
+  margin-right: 8px;
+  height: 36px;
+  width: 36px;
+  background: #F2F3F5;
+  border-radius: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img{
+    cursor: pointer;
+    width: 22px;
+    height: 15px;
+  }
+}
+.newBlock{
+  margin-right: 8px;
+  cursor: pointer;
+  width: 142px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #F2F3F5;
+  border-radius: 90px;
+  padding: 0 8px;
+  img{
+    width: 20px;
+    height: 20px;
+  }
+  h4{
+    font-size: 14px;
+    color: #67A5EB;
+  }
+}
+
+.uploadBar{
+  align-items: center;
+  width: 178px;
+  height: 52px;
+  display: flex;
+  justify-content: space-around;
+  background: #F2F3F5;
+  border-radius: 12px;
+  margin-right: 16px;
+}
+
+.uploadBarCont{
+  p{
+    color: #6D7885;
+    line-height: 20px;
+  }
+  
+  p:nth-child(1){
+    img{
+      margin-right: 7px;
+      margin-left: 2px;
+      transform: translateY(2px);
+    }
+  }
+  p:nth-child(2){
+    img{
+      margin-right: 5px;
+    }
+  }
+}
+.uploadBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  width: 36px;
+  height: 36px;
+  background: #67A5EB;
+  cursor: pointer;
+  img{
+    height: 14px;
+    width: 11px;
+  }
+}
+
+.barSelector{
+  width: 285px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  border: 0.5px solid rgba(0, 0, 0, 0.12);
+  height: 68px;
+  h4{
+    font-weight: 600;
+    font-size: 20px;
+  }
+  img{
+    cursor: pointer;
+    width: 14px;
+    height: 14px;
   }
 }
 
 .headRBar {
   align-items: center;
   display: flex;
-
-  img {
-    margin-right: 20px;
-    cursor: pointer;
-  }
-
-  ul {
-    display: flex;
-
-    li {
-      z-index: 1;
-      text-align: center;
-      padding-top: 20px;
-      height: 60px;
-      width: 144px;
-      box-sizing: border-box;
-      background: $BG_COLOR;
-      cursor: pointer;
-      box-shadow: 0px 4px 10px #C2D6DA;
-    }
-
-    li:hover {
-      border-bottom: 4px solid $ACCENT_COLOR;
-    }
-  }
+  justify-content: space-around;
 }
 
 .sideBar {
@@ -82,11 +216,13 @@
   margin-top: 60px;
   right: 0;
   box-sizing: border-box;
-  padding-top: 20px;
+  padding: 0 16px;
+  padding-top: 10px;
   height: 93vh;
   width: 285px;
   background: #FFF;
   overflow: auto;
+  border-left:  0.5px solid rgba(0, 0, 0, 0.12);
 
   img:nth-child(1) {
     width: 24px;
@@ -97,24 +233,39 @@
   }
 
   .select {
-    margin-bottom: 5px;
-    border: 2px solid #C2D6DA;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
     font-size: 18px;
-    text-align: center;
     width: 100%;
-    height: 52px;
+    height: 60px;
     box-sizing: border-box;
     display: flex;
-    padding-left: 20px;
-    padding-right: 30px;
+    padding-left: 18px;
+    padding-right: 24px;
     align-items: center;
     justify-content: space-between;
+    &:hover{
+      img:nth-child(2){
+        transform: translateX(10px);
+      }
+    }
+   
 
     img {
       position: static;
       margin: 0;
-      margin-right: 15px;
+      transition: 0.3s;
     }
+    h4{
+      font-size: 16px;
+    }
+  }
+}
+
+.selectCont{
+  display: flex;
+  align-items: center;
+  h4 {
+    margin-left: 14px;
   }
 }
 
