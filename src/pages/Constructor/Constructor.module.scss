@@ -29,7 +29,7 @@
   justify-content: space-between;
   height: 68px;
   background: #FFF;
-
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
 }
 
 .headLBar {
@@ -186,7 +186,7 @@
 }
 
 .barSelector{
-  width: 285px;
+  width:320px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -219,18 +219,11 @@
   padding: 0 16px;
   padding-top: 10px;
   height: 93vh;
-  width: 285px;
+  width: 320px;
   background: #FFF;
   overflow: auto;
   border-left:  0.5px solid rgba(0, 0, 0, 0.12);
 
-  img:nth-child(1) {
-    width: 24px;
-    height: 24px;
-    margin-top: 15px;
-    margin-left: 15px;
-    transition: transform $T_TIME;
-  }
 
   .select {
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
@@ -335,9 +328,6 @@
 }
 
 @media (max-width: 570px) {
-  .headLBar h4{
-    display: none;
-  }
   .headRBar {
     ul {
       display: none;

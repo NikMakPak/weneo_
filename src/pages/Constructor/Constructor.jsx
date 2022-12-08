@@ -38,9 +38,9 @@ export default function Constructor() {
   const style = {
     overflow: preview ? "" : "auto",
     marginTop: preview ? "" : "68px",
-    width: !rSideBar || preview ? "100%" : "85%",
+    width: !rSideBar || preview ? "100%" : "83%",
     minWidth: "385px",
-    minHeight: preview ? "" : "90vh",
+    minHeight: preview ? "" : "93vh",
     background: "#FFF",
     boxShadow: "4px 4px 40px rgba(0, 0, 0, 0.25)",
     transition: "0.3s"
@@ -194,6 +194,7 @@ export default function Constructor() {
                         setContainerItems={setContainerItems}
                         title={"Стандартная Форма"}
                         descr={"Основной блок с формой"}
+                        prevImage={"./img/formPreview.png"}
                         elements={{
                           input1: { val: "Ivan@mail.ru" }, input2: { val: "Иван Иванов" }, input3: { val: "+7 999 999 99 99" },
                           btn: { val: "Отправить", fontSize: "15px", bg: "#2971f5", color: "#FFF" }
@@ -218,6 +219,7 @@ export default function Constructor() {
                         setContainerItems={setContainerItems}
                         kind={"nav"}
                         title={"Стандартная навигация"}
+                        prevImage={"./img/navPreview.png"}
                         descr={"Блок с навигацией"}
                         elements={{
                           li1: { val: "О нас" }, li2: { val: "Технологии" }, li3: { val: "Заказать" },
@@ -244,7 +246,8 @@ export default function Constructor() {
                         containerItems={containerItems}
                         setContainerItems={setContainerItems}
                         title={"Стандартная шапка"}
-                        descr={"Блок с стандартной шапкой"}
+                        descr={"Блок с стандартной обложкой, включает в себя Заголовок, Описание и Кнопку"}
+                        prevImage={"./img/coverPreview.png"}
                         elements={{
                           h1: { val: "Сайт для вашего бизнеса", fontSize: "45px", color: "#FFF", },
                           h4: {
@@ -276,6 +279,7 @@ export default function Constructor() {
                         setContainerItems={setContainerItems}
                         title={"Стандартная заголовок"}
                         descr={"Блок с стандартным заголовком"}
+                        prevImage={"./img/titlePreview.png"}
                         elements={{
                           h1: { val: "Заголовок", fontSize: "35px", color: "#000", },
                         }} />
@@ -285,6 +289,7 @@ export default function Constructor() {
                         setContainerItems={setContainerItems}
                         title={"Стандартный текст"}
                         descr={"Блок с стандартным текстом"}
+                        prevImage={"./img/textPreview.png"}
                         elements={{
                           p: {
                             val: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur ut ea dignissimos, mollitia a. Eaque a ducimus, tenetur temporibus dolore perspiciatis veritatis exercitationem rem quidem natus et numquam? Quisquam.",
@@ -298,6 +303,7 @@ export default function Constructor() {
                         setContainerItems={setContainerItems}
                         title={"Постоблок AI"}
                         descr={"Постоблок с созданием ключевых слов с помощью AI"}
+                        prevImage={"./img/AiPostblockPreview.png"}
                         ai={true}
                         elements={{
 

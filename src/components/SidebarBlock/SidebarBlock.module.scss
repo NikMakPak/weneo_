@@ -11,6 +11,12 @@
     transition: $T_TIME;
 }
 
+.content{
+    display: flex;
+    justify-content: space-around;
+    padding: 6px 10px;
+}
+
 h4 {
     margin: 0;
     font-weight: 600;
@@ -21,5 +27,5 @@ p {
     margin: 0;
     font-weight: 400;
     font-size: 13px;
-    line-height: 17px;
+    line-height: 16px;
 }

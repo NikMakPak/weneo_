@@ -4,17 +4,20 @@ import { useDrag } from 'react-dnd'
 import { ItemTypes } from './ItemTypes.js'
 // Поместить объект стилей блока сайдбара в отдельный файл
 const style = {
-    minHeight: "79px",
-    boxShadow: "0px 4px 10px #C2D6DA",
-    padding: "10px 5px 10px 0",
+    background: "#F2F3F5",
+    minHeight: "140px",
+    padding: "0px 0px 10px 0",
     boxSizing: "border-box",
     marginBottom: "10px",
+    marginTop: "10px",
     transition: "$T_TIME",
     display: "flex",
+    flexDirection: "column",
+    borderRadius: "15px"
   }
 
 
-export const SidebarBlock = function Box({title,descr, kind, containerItems, setContainerItems, elements, ai = false}) {
+export const SidebarBlock = function Box({title,descr, kind, prevImage, containerItems, setContainerItems, elements, ai = false}) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.BOX, //Нужно передавать тип блока, с помощью проверок в ConstructWindow Будет генериться нужный блок
         item: { title, descr, elements, kind, ai},
@@ -32,10 +35,10 @@ export const SidebarBlock = function Box({title,descr, kind, containerItems, set
     const opacity = isDragging ? 0.4 : 1
     return (
         <div ref={drag} style={{ ...style, opacity }} data-testid={`box`}>
-            <img style={{marginRight: "10px"}} src='./img/grid_view.svg' alt="icon" />
+            <img style={{borderRadius: "15px 15px 0 0", filter: "brightness(80%)"}} src={prevImage} alt="preview" />
             <div className={styles.content}>
-                <h4>{title}</h4>
                 <p>{descr}</p>
+                <img src="./img/arrowCross.svg" alt="<- ->" />
             </div>
         </div>
     )
