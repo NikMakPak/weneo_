@@ -13,7 +13,7 @@ import NavBar from "../../components/Blocks/Block/NavBar";
 import Header from "../../components/Blocks/Header";
 import TitleBlock from "../../components/Blocks/TitleBlock";
 import PostBlock from "../../components/Blocks/PostBlock";
-import Login from "../../components/Login/Login";
+import SidebarMenu from "../../components/SidebarMenu/SidebarMenu";
 
 export default function Constructor() {
   const [value, setValue] = React.useState([]);
@@ -25,6 +25,7 @@ export default function Constructor() {
   const [modalActive, setModalActive] = React.useState(false)
   const [setts, setSetts] = React.useState(false)
   const [impVal, setImpVal] = React.useState([])
+  const [menuOpen, setMenuOpen] = React.useState(false)
 
 
   React.useEffect(() => {
@@ -98,9 +99,12 @@ export default function Constructor() {
   return (
     preview === false ?
       <>
+      {
+        menuOpen && <SidebarMenu setMenuOpen={() => setMenuOpen()}/>
+      }
         <div className={styles.headerBar}>
           <div className={styles.headLBar}>
-            <div className={styles.opnLbar}>
+            <div onClick={() => setMenuOpen(true)} className={styles.opnLbar}>
               <img width={18} height={12} src="./img/opnLbar.svg" alt="Opn" />
               <div className={styles.opnLbarCont}>
                 <h4 style={{ fontSize: "14px" }}>Мой сайт</h4>
