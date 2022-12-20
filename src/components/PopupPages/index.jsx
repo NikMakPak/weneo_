@@ -1,20 +1,16 @@
 import React from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { setCurrentPage, setIsOpen } from "../../redux/slices/pagesSlice"
 import s from "./PopupPages.module.scss"
 
-const PopupPages = ({ setIsPagesPopupOpen }) => {
-    const [currentPage, setCurrentPage] = React.useState(1)
+const PopupPages = () => {
+    const dispatch = useDispatch()
+    const { currentPage, items } = useSelector((state) => state.pages)
     const sortRef = React.useRef(null)
-
-    const items = [
-        { id: 1, name: "Товары", website: "testsite.weneo.io/page1" },
-        { id: 2, name: "О нас", website: "testsite.weneo.io/about" },
-        { id: 3, name: "Главная", website: "testsite.weneo.io" },
-        { id: 4, name: "Контакты", website: "testsite.weneo.io/contacts" },
-    ]
 
     const hidePopup = (event) => {
         if (!event.nativeEvent.path.includes(sortRef.current)) {
-            setIsPagesPopupOpen(false)
+            dispatch(setIsOpen(false))
         }
     }
 
@@ -28,7 +24,7 @@ const PopupPages = ({ setIsPagesPopupOpen }) => {
                     <p>Страницы</p>
                     <button
                         className={s.pages_popup__leave_btn}
-                        onClick={() => setIsPagesPopupOpen(false)}
+                        onClick={() => dispatch(setIsOpen(false))}
                     ></button>
                 </div>
                 <div className={s.decorate}></div>
@@ -42,7 +38,8 @@ const PopupPages = ({ setIsPagesPopupOpen }) => {
                                     : ""
                             }`}
                             key={id}
-                            onClick={() => setCurrentPage(id)}
+                            // onClick={() => setCurrentPage(id)}
+                            onClick={() => dispatch(setCurrentPage(id))}
                         >
                             <p className={s.pages_popup__name}>{name}</p>
                             <p className={s.pages_popup__web}>{website}</p>

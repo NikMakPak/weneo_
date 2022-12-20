@@ -15,6 +15,8 @@ import TitleBlock from "../../components/Blocks/TitleBlock"
 import PostBlock from "../../components/Blocks/PostBlock"
 import SidebarMenu from "../../components/SidebarMenu/SidebarMenu"
 import PopupPages from "../../components/PopupPages"
+import { useDispatch, useSelector } from "react-redux"
+import { setIsOpen } from "../../redux/slices/pagesSlice"
 
 export default function Constructor() {
     const [value, setValue] = React.useState([])
@@ -29,7 +31,8 @@ export default function Constructor() {
     const [setts, setSetts] = React.useState(false)
     const [impVal, setImpVal] = React.useState([])
     const [menuOpen, setMenuOpen] = React.useState(false)
-    const [isPagesPopupOpen, setIsPagesPopupOpen] = React.useState(false) // попап выбора страниц
+    const { isOpen } = useSelector((state) => state.pages) // попап выбора страниц
+    const dispatch = useDispatch()
 
     React.useEffect(() => {
         setCurrentState(
@@ -146,10 +149,7 @@ export default function Constructor() {
     return preview === false ? (
         <>
             {menuOpen && <SidebarMenu setMenuOpen={() => setMenuOpen()} />}
-            {isPagesPopupOpen && (
-                <PopupPages setIsPagesPopupOpen={setIsPagesPopupOpen} />
-            )}
-            {console.log(isPagesPopupOpen)}
+            {isOpen && <PopupPages />}
             <div className={styles.headerBar}>
                 <div className={styles.headLBar}>
                     <div
@@ -174,7 +174,7 @@ export default function Constructor() {
                         />
                     </div>
                     <div
-                        onClick={() => setIsPagesPopupOpen((prev) => !prev)}
+                        onClick={() => dispatch(setIsOpen(true))}
                         className={styles.opnPages}
                     >
                         <h4 style={{ fontSize: "14px" }}>Главная</h4>
