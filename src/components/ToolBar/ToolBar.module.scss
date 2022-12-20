@@ -1,0 +1,74 @@
+.ToolBar {
+    position: relative;
+    height: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 30px;
+    transform: translateY(30px);
+}
+
+.LtoolBar {
+    display: flex;
+    align-items: center;
+}
+
+.arrows {
+    width: 88px;
+    height: 36px;
+    background: #FFF;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 10px 0 10px;
+    margin-right: 10px;
+
+    img {
+        cursor: pointer;
+    }
+}
+
+.line {
+    margin-left: 9px;
+    margin-right: 9px;
+    height: 20px;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+}
+
+.delete {
+    width: 44px;
+    height: 36px;
+    background: #FFF;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+        width: 10;
+        height: 16px;
+    }
+}
+
+.EditBtn {
+    width: 202px;
+    height: 36px;
+    background: #67A5EB;
+    border: 0.5px solid rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px 0 18px;
+    cursor: pointer;
+    p{
+        color: #FFF;
+    }
+}

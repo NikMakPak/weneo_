@@ -1,9 +1,11 @@
 import React from "react"
 import Popup from "../Popup/Popup"
+import ToolBar from "../ToolBar/ToolBar";
 export default function Header({ Items, setContainerItems, containerItems }) {
     console.log(Items);
     const [modalActive, setModalActive] = React.useState(false)
     const [modalPos, setModalPos] = React.useState({})
+    const [toolBarActive, setToolBarActive] = React.useState(false)
     const [blockStyles, setBlockStyles] = React.useState(Items.elements)
     const onClickEdit = (event) => {
         console.log(event);
@@ -15,8 +17,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
 
 
     return (
-        <div onClick={onClickEdit} style={{
-            padding: "50px",
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseEnter={() => setToolBarActive(true)} onClick={onClickEdit} style={{
             width: "100%",
             height: "100vh",
             display: 'flex',
@@ -25,6 +26,9 @@ export default function Header({ Items, setContainerItems, containerItems }) {
             flexDirection: "column",
             backgroundPosition: "center"
         }}>
+            {
+                 <ToolBar active={toolBarActive} Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} blockStyles={blockStyles}></ToolBar>
+            }
             <div style={{
                 margin: "auto",
                 textAlign: "center",

@@ -1,17 +1,19 @@
 import React from "react"
 import Popup from "../Popup/Popup"
+import ToolBar from "../ToolBar/ToolBar"
 export default function FormBlock({Items, setContainerItems, containerItems}) {
     const [modalActive, setModalActive] = React.useState(false)
     const [modalPos, setModalPos] = React.useState({})
     const [blockStyles, setBlockStyles] = React.useState(Items.elements)
+    const [toolBarActive, setToolBarActive] = React.useState(false)
     const onClickEdit = (event) => {
         console.log(event);
         setModalPos({ posX: event.clientX, posY: event.clientY})
         setModalActive(true)
     }
     return(
-        <div onClick={onClickEdit} style={{
-            padding: "50px",
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseEnter={() => setToolBarActive(true)} onClick={onClickEdit} style={{
+            padding: "10px",
             background: '#FFF',
             width: "100%",
             height: "500px",
@@ -19,6 +21,7 @@ export default function FormBlock({Items, setContainerItems, containerItems}) {
             flexDirection: "column",
             
           }}>
+            <ToolBar active={toolBarActive} Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} blockStyles={blockStyles}></ToolBar>
             <input placeholder={blockStyles.input1.val} style={{
                 width: "50%",
                 height: "60px",

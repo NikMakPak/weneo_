@@ -1,12 +1,14 @@
 import React from "react"
 import Popup from "../Popup/Popup"
 import axios from "axios";
+import ToolBar from "../ToolBar/ToolBar";
 
 export default function PostBlock({ Items, setContainerItems, containerItems }) {
     console.log(Items);
     const [modalActive, setModalActive] = React.useState(false)
     const [modalPos, setModalPos] = React.useState({})
     const [blockStyles, setBlockStyles] = React.useState(Items.elements)
+    const [toolBarActive, setToolBarActive] = React.useState(false)
     const [keyWords, setKeyWords] = React.useState(["...","...","...","...","...","..."])
     const onClickEdit = (event) => {
         console.log(event);
@@ -40,10 +42,11 @@ export default function PostBlock({ Items, setContainerItems, containerItems }) 
 
     console.log(keyWords);
     return (
-        <div onClick={onClickEdit} style={{
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseEnter={() => setToolBarActive(true)} onClick={onClickEdit} style={{
             width: "100%",
             padding: "10px"
         }}>
+            <ToolBar active={toolBarActive} Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} blockStyles={blockStyles}></ToolBar>
             <div style={{margin: "0 auto",width: "50%"}}>
                 <h3>{blockStyles.title.val}</h3>
                 <p style={{fontSize: "20px", lineHeight: "25px"}}>
