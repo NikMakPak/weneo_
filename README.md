@@ -26,7 +26,7 @@ cd .\backend\
 pip install virtualenv
 virtualenv venv
 .\venv\Scripts\activate.bat
-pip install flask Flask-PyMongo flask-cors
+pip install flask Flask-PyMongo flask-cors rutermextract
 ```
 ### Run server
 ```sh
