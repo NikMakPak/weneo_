@@ -19,7 +19,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { setIsOpen } from "../../redux/slices/pagesSlice"
 
 export default function Constructor() {
-    const [value, setValue] = React.useState([])
+    const [value, setValue] = React.useState("Добавить блок")
     const [preview, setPreview] = React.useState(false)
     const [rSideBar, setRsideBar] = React.useState(false)
     const [containerItems, setContainerItems] = React.useState([]) // Глобавльный стейт элементов
@@ -46,7 +46,6 @@ export default function Constructor() {
         ])
     }, [containerItems])
 
-    // Поместить объект стилей в отдельный файл
     const style = {
         overflow: preview ? "" : "auto",
         marginTop: preview ? "" : "68px",
@@ -138,9 +137,12 @@ export default function Constructor() {
                         )
                     )
                 ) : (
-                    <h3 style={{ textAlign: "center", marginTop: "20%" }}>
-                        Перетащите сюда блок
-                    </h3>
+                    <div style={rSideBar ? {display: "flex", justifyContent: "end", height: "100%"} : {display: "flex", justifyContent: "center", height: "100%"}}>
+                        {
+                        rSideBar ? <img width="68%" src="./img/moveBlocksHelp.svg" alt="Перетащите сюда блок" /> 
+                        : <img width="38%" src="./img/HelpStatic.svg" alt="Перетащите сюда блок" /> 
+                        }
+                    </div>
                 )}
             </div>
         )
@@ -245,7 +247,10 @@ export default function Constructor() {
                     </div>
                     {rSideBar && (
                         <div className={styles.barSelector}>
-                            <h4>Добавить блок</h4>
+                            <div className={styles.barSelectorReturnGr}>
+                            {value !== "Добавить блок" && <img onClick={()=> setValue("Добавить блок")} src="./img/arrBack.svg" alt="<" />}
+                            <h4>{value}</h4>
+                            </div>
                             <img
                                 onClick={() => setRsideBar(false)}
                                 src="./img/cross.svg"
@@ -303,13 +308,9 @@ export default function Constructor() {
                     <select value={value} onChange={(event) => { setValue(event.target.value); setRotateWidg(prev => prev + 90) }}>
                         {options}
                     </select> */}
-                            <div
+                            {value === "Добавить блок" && <div
                                 onClick={() =>
-                                    setValue((prev) =>
-                                        !prev.includes("0")
-                                            ? [...prev, "0"]
-                                            : prev.filter((e) => e !== "0")
-                                    )
+                                    setValue("Форма")
                                 }
                                 className={styles.select}
                             >
@@ -323,9 +324,9 @@ export default function Constructor() {
                                     src="./img/arrRight.svg"
                                     alt=""
                                 />
-                            </div>
-                            <div className={styles.sideBarContent}>
-                                {value.includes("0") && (
+                            </div>}
+                            {value === "Форма" && <div className={styles.sideBarContent}>
+                                { (
                                     <>
                                         <SidebarBlock
                                             kind={"form"}
@@ -351,14 +352,10 @@ export default function Constructor() {
                                         />
                                     </>
                                 )}
-                            </div>
-                            <div
+                            </div>}
+                            {value === "Добавить блок" &&<div
                                 onClick={() =>
-                                    setValue((prev) =>
-                                        !prev.includes("1")
-                                            ? [...prev, "1"]
-                                            : prev.filter((e) => e !== "1")
-                                    )
+                                    setValue("Навигация")
                                 }
                                 className={styles.select}
                             >
@@ -372,9 +369,9 @@ export default function Constructor() {
                                     src="./img/arrRight.svg"
                                     alt=""
                                 />
-                            </div>
+                            </div>}
                             <div className={styles.sideBarContent}>
-                                {value.includes("1") && (
+                                {value === "Навигация" && (
                                     <>
                                         <SidebarBlock
                                             setContainerItems={
@@ -393,13 +390,9 @@ export default function Constructor() {
                                     </>
                                 )}
                             </div>
-                            <div
+                            {value === "Добавить блок" && <div
                                 onClick={() =>
-                                    setValue((prev) =>
-                                        !prev.includes("2")
-                                            ? [...prev, "2"]
-                                            : prev.filter((e) => e !== "2")
-                                    )
+                                    setValue("Обложка")
                                 }
                                 className={styles.select}
                             >
@@ -413,9 +406,9 @@ export default function Constructor() {
                                     src="./img/arrRight.svg"
                                     alt=""
                                 />
-                            </div>
+                            </div>}
                             <div className={styles.sideBarContent}>
-                                {value.includes("2") && (
+                                {value === "Обложка" && (
                                     <>
                                         <SidebarBlock
                                             kind={"header"}
@@ -450,13 +443,9 @@ export default function Constructor() {
                                     </>
                                 )}
                             </div>
-                            <div
+                            {value === "Добавить блок" && <div
                                 onClick={() =>
-                                    setValue((prev) =>
-                                        !prev.includes("3")
-                                            ? [...prev, "3"]
-                                            : prev.filter((e) => e !== "3")
-                                    )
+                                    setValue("Текст")
                                 }
                                 className={styles.select}
                             >
@@ -470,9 +459,9 @@ export default function Constructor() {
                                     src="./img/arrRight.svg"
                                     alt=""
                                 />
-                            </div>
+                            </div>}
                             <div className={styles.sideBarContent}>
-                                {value.includes("3") && (
+                                {value === "Текст" && (
                                     <>
                                         <SidebarBlock
                                             kind={"title"}
