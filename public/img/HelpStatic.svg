@@ -1,17 +1,17 @@
 <svg width="296" height="256" viewBox="0 0 296 256" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="1" y="1" width="216" height="64" rx="10" stroke="#808080" stroke-opacity="0.4" stroke-width="2"/>
-<rect x="73" y="17" width="132" height="7" rx="3.5" fill="#808080" fill-opacity="0.4"/>
-<rect x="73" y="30" width="103" height="7" rx="3.5" fill="#808080" fill-opacity="0.4"/>
-<rect x="73" y="43" width="61" height="7" rx="3.5" fill="#808080" fill-opacity="0.4"/>
-<rect x="19" y="18" width="31" height="31" rx="15.5" stroke="#808080" stroke-opacity="0.4" stroke-width="2"/>
-<rect x="6" y="191" width="216" height="64" rx="10" stroke="#808080" stroke-opacity="0.4" stroke-width="2"/>
-<rect x="78" y="207" width="132" height="7" rx="3.5" fill="#808080" fill-opacity="0.4"/>
-<rect x="78" y="220" width="103" height="7" rx="3.5" fill="#808080" fill-opacity="0.4"/>
-<rect x="78" y="233" width="61" height="7" rx="3.5" fill="#808080" fill-opacity="0.4"/>
-<rect x="24" y="208" width="31" height="31" rx="15.5" stroke="#808080" stroke-opacity="0.4" stroke-width="2"/>
-<rect x="-1" y="1" width="216" height="64" rx="10" transform="matrix(-1 0 0 1 294 95)" stroke="#808080" stroke-opacity="0.4" stroke-width="2"/>
-<rect width="132" height="7" rx="3.5" transform="matrix(-1 0 0 1 223 112)" fill="#67A5EB" fill-opacity="0.9"/>
-<rect width="103" height="7" rx="3.5" transform="matrix(-1 0 0 1 223 125)" fill="#67A5EB" fill-opacity="0.9"/>
-<rect width="61" height="7" rx="3.5" transform="matrix(-1 0 0 1 223 138)" fill="#67A5EB" fill-opacity="0.9"/>
-<rect x="-1" y="1" width="31" height="31" rx="15.5" transform="matrix(-1 0 0 1 276 112)" stroke="#808080" stroke-opacity="0.4" stroke-width="2"/>
+<rect x="1" y="1" width="216" height="64" rx="10" stroke="#808080" stroke-opacity="0.2" stroke-width="2"/>
+<rect x="73" y="17" width="132" height="7" rx="3.5" fill="#808080" fill-opacity="0.2"/>
+<rect x="73" y="30" width="103" height="7" rx="3.5" fill="#808080" fill-opacity="0.2"/>
+<rect x="73" y="43" width="61" height="7" rx="3.5" fill="#808080" fill-opacity="0.2"/>
+<rect x="19" y="18" width="31" height="31" rx="15.5" stroke="#808080" stroke-opacity="0.2" stroke-width="2"/>
+<rect x="6" y="191" width="216" height="64" rx="10" stroke="#808080" stroke-opacity="0.2" stroke-width="2"/>
+<rect x="78" y="207" width="132" height="7" rx="3.5" fill="#808080" fill-opacity="0.2"/>
+<rect x="78" y="220" width="103" height="7" rx="3.5" fill="#808080" fill-opacity="0.2"/>
+<rect x="78" y="233" width="61" height="7" rx="3.5" fill="#808080" fill-opacity="0.2"/>
+<rect x="24" y="208" width="31" height="31" rx="15.5" stroke="#808080" stroke-opacity="0.2" stroke-width="2"/>
+<rect x="-1" y="1" width="216" height="64" rx="10" transform="matrix(-1 0 0 1 294 95)" stroke="#808080" stroke-opacity="0.2" stroke-width="2"/>
+<rect width="132" height="7" rx="3.5" transform="matrix(-1 0 0 1 223 112)" fill="#67A5EB" fill-opacity="0.5"/>
+<rect width="103" height="7" rx="3.5" transform="matrix(-1 0 0 1 223 125)" fill="#67A5EB" fill-opacity="0.5"/>
+<rect width="61" height="7" rx="3.5" transform="matrix(-1 0 0 1 223 138)" fill="#67A5EB" fill-opacity="0.5"/>
+<rect x="-1" y="1" width="31" height="31" rx="15.5" transform="matrix(-1 0 0 1 276 112)" stroke="#808080" stroke-opacity="0.2" stroke-width="2"/>
 </svg>
