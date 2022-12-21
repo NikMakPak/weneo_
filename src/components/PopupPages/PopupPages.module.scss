@@ -57,6 +57,7 @@
         height: 66px; //
         border-radius: 12px;
         cursor: pointer;
+        position: relative;
 
         &_active {
             background: #67a5eb;
@@ -84,6 +85,25 @@
 
         letter-spacing: -0.08px;
         margin-top: 4px;
+    }
+
+    &__icon {
+        display: block;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 24px;
+        height: 24px;
+
+        &_settings {
+            background: center no-repeat
+                url("../../../public/img/settingsPopup.svg");
+        }
+
+        &_select {
+            background: center no-repeat url("../../../public/img/select.svg");
+        }
     }
 }
 

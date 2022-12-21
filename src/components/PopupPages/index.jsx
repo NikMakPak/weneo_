@@ -38,11 +38,18 @@ const PopupPages = () => {
                                     : ""
                             }`}
                             key={id}
-                            // onClick={() => setCurrentPage(id)}
                             onClick={() => dispatch(setCurrentPage(id))}
                         >
                             <p className={s.pages_popup__name}>{name}</p>
                             <p className={s.pages_popup__web}>{website}</p>
+                            <a
+                                href="#"
+                                className={`${s.pages_popup__icon} ${
+                                    currentPage === id
+                                        ? s.pages_popup__icon_settings
+                                        : s.pages_popup__icon_select
+                                }`}
+                            ></a>
                         </div>
                     ))}
                 </div>
