@@ -43,7 +43,6 @@ const Popup = ({
         updateContainer()
     }
 
-    console.log()
     return (
         <div
             onClick={(e) => {
@@ -93,7 +92,7 @@ const Popup = ({
                         {
                             switchSatt === false ? (
                                 Object.entries(blockStyles).map((e) => {
-                                    console.log(e[1])
+                                    // console.log(e[1])
                                     return (
                                         <>
                                             <h4>{e[0]}</h4>
