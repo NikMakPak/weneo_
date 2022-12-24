@@ -64,6 +64,7 @@
             color: #67a5eb;
             // background: ;
             letter-spacing: -0.24px;
+            cursor: pointer;
 
             &:hover {
                 background: #67a5eb;
@@ -137,6 +138,31 @@
         }
         to {
             opacity: 1;
+        }
+    }
+}
+
+.occurrence {
+    animation: occurrence 0.2s ease-in-out;
+    transition: animation 0.4s;
+    @keyframes occurrence {
+        0% {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        50% {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.2);
+        }
+        100% {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
         }
     }
 }

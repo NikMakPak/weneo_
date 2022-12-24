@@ -16,9 +16,9 @@ const AlertMessage = ({ callback }) => {
     }
 
     return (
-        <div className={`${s.pages_popup} ${s.smooth}`} onClick={hidePopup}>
+        <div className={`${s.pages_popup}`} onClick={hidePopup}>
             <div
-                className={`${s.pages_popup__container} ${s.pages_popup__center}`}
+                className={`${s.pages_popup__container} ${s.pages_popup__center} ${s.occurrence}`}
                 ref={sortRef}
             >
                 <div className={s.pages_popup__title}>
