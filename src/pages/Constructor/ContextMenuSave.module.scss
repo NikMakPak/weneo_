@@ -1,0 +1,130 @@
+.pages_popup {
+    width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    position: fixed;
+
+    &__container {
+        background-color: #fff;
+        border-radius: 20px;
+    }
+    &__center {
+        width: 512px;
+        box-sizing: border-box;
+
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    &__title {
+        margin: 28px;
+        position: relative;
+        p {
+            font-weight: 400;
+            font-size: 24px;
+            line-height: 28px;
+        }
+
+        button {
+            width: 28px;
+            height: 28px;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 0;
+            background: inherit;
+            background: center no-repeat url("../../../public/img/leave.svg");
+            cursor: pointer;
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0px 12px 20px;
+    }
+
+    &__item {
+        width: 456px;
+        height: 90px;
+        padding: 16px;
+        border-radius: 12px;
+        position: relative;
+        background: url("../../../public/img/uploadBoarder.svg");
+
+        @media (max-width: 550px) {
+            width: auto;
+        }
+
+        &_second {
+            padding: 32px 16px 16px;
+            background: url("../../../public/img/uploadBoarder2.svg");
+        }
+    }
+
+    &__name {
+        font-weight: 500;
+        font-size: 17px;
+        line-height: 22px;
+
+        color: #000000;
+    }
+
+    &__web {
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 15px;
+        /* identical to box height */
+
+        margin-top: 4px;
+        color: #6d7885;
+    }
+
+    &__button {
+        margin-top: -8px;
+        margin-bottom: -8px;
+        button {
+            padding: 8px 16px 24px;
+            border: 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 20px;
+            color: #ffffff;
+            background: #67a5eb;
+            border-radius: 12px;
+            background: #67a5eb no-repeat
+                url("../../../public/img/uploadBtn.svg") center 80%;
+        }
+    }
+
+    &__icon {
+        display: block;
+        position: absolute;
+        right: 16px;
+        top: 29px;
+        transform: translateY(-50%);
+        width: 56px;
+        height: 20px;
+        background: center no-repeat url("../../../public/img/autosave.svg");
+    }
+}
+
+.smooth {
+    animation: smooth 0.1s ease-in-out;
+    transition: all 0.4s;
+    @keyframes smooth {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+}

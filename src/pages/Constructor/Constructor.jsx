@@ -17,6 +17,7 @@ import SidebarMenu from "../../components/SidebarMenu/SidebarMenu"
 import PopupPages from "../../components/PopupPages"
 import { useDispatch, useSelector } from "react-redux"
 import { setIsOpen } from "../../redux/slices/pagesSlice"
+import s from "./ContextMenuSave.module.scss"
 
 export default function Constructor() {
     const [value, setValue] = React.useState("Добавить блок")
@@ -33,6 +34,8 @@ export default function Constructor() {
     const [menuOpen, setMenuOpen] = React.useState(false)
     const { isOpen } = useSelector((state) => state.pages) // попап выбора страниц
     const dispatch = useDispatch()
+    const [isOpenContextMenuSave, setIsOpenContextMenuSave] =
+        React.useState(false)
 
     React.useEffect(() => {
         setCurrentState(
@@ -137,11 +140,34 @@ export default function Constructor() {
                         )
                     )
                 ) : (
-                    <div style={rSideBar ? {display: "flex", justifyContent: "end", height: "100%"} : {display: "flex", justifyContent: "center", height: "100%"}}>
-                        {
-                        rSideBar ? <img width="68%" src="./img/moveBlocksHelp.svg" alt="Перетащите сюда блок" /> 
-                        : <img width="38%" src="./img/HelpStatic.svg" alt="Перетащите сюда блок" /> 
+                    <div
+                        style={
+                            rSideBar
+                                ? {
+                                      display: "flex",
+                                      justifyContent: "end",
+                                      height: "100%",
+                                  }
+                                : {
+                                      display: "flex",
+                                      justifyContent: "center",
+                                      height: "100%",
+                                  }
                         }
+                    >
+                        {rSideBar ? (
+                            <img
+                                width="68%"
+                                src="./img/moveBlocksHelp.svg"
+                                alt="Перетащите сюда блок"
+                            />
+                        ) : (
+                            <img
+                                width="38%"
+                                src="./img/HelpStatic.svg"
+                                alt="Перетащите сюда блок"
+                            />
+                        )}
                     </div>
                 )}
             </div>
@@ -152,6 +178,12 @@ export default function Constructor() {
         <>
             {menuOpen && <SidebarMenu setMenuOpen={() => setMenuOpen()} />}
             {isOpen && <PopupPages />}
+            {isOpenContextMenuSave && (
+                <ContextMenuSave
+                    setIsOpen={setIsOpenContextMenuSave}
+                    isOpen={isOpenContextMenuSave}
+                />
+            )}
             <div className={styles.headerBar}>
                 <div className={styles.headLBar}>
                     <div
@@ -228,7 +260,10 @@ export default function Constructor() {
                         />
                     </div>
                     <div className={styles.uploadBar}>
-                        <div className={styles.uploadBarCont}>
+                        <div
+                            className={styles.uploadBarCont}
+                            onClick={() => setIsOpenContextMenuSave(true)}
+                        >
                             <p>
                                 <img src="./img/save.svg" alt="" />
                                 минуту назад
@@ -248,8 +283,16 @@ export default function Constructor() {
                     {rSideBar && (
                         <div className={styles.barSelector}>
                             <div className={styles.barSelectorReturnGr}>
-                            {value !== "Добавить блок" && <img onClick={()=> setValue("Добавить блок")} src="./img/arrBack.svg" alt="<" />}
-                            <h4>{value}</h4>
+                                {value !== "Добавить блок" && (
+                                    <img
+                                        onClick={() =>
+                                            setValue("Добавить блок")
+                                        }
+                                        src="./img/arrBack.svg"
+                                        alt="<"
+                                    />
+                                )}
+                                <h4>{value}</h4>
                             </div>
                             <img
                                 onClick={() => setRsideBar(false)}
@@ -308,68 +351,76 @@ export default function Constructor() {
                     <select value={value} onChange={(event) => { setValue(event.target.value); setRotateWidg(prev => prev + 90) }}>
                         {options}
                     </select> */}
-                            {value === "Добавить блок" && <div
-                                onClick={() =>
-                                    setValue("Форма")
-                                }
-                                className={styles.select}
-                            >
-                                <div className={styles.selectCont}>
-                                    <img src="./img/form.svg" alt="" />
-                                    <h4>Форма</h4>
+                            {value === "Добавить блок" && (
+                                <div
+                                    onClick={() => setValue("Форма")}
+                                    className={styles.select}
+                                >
+                                    <div className={styles.selectCont}>
+                                        <img src="./img/form.svg" alt="" />
+                                        <h4>Форма</h4>
+                                    </div>
+                                    <img
+                                        width={14}
+                                        height={11}
+                                        src="./img/arrRight.svg"
+                                        alt=""
+                                    />
                                 </div>
-                                <img
-                                    width={14}
-                                    height={11}
-                                    src="./img/arrRight.svg"
-                                    alt=""
-                                />
-                            </div>}
-                            {value === "Форма" && <div className={styles.sideBarContent}>
-                                { (
-                                    <>
-                                        <SidebarBlock
-                                            kind={"form"}
-                                            setContainerItems={
-                                                setContainerItems
-                                            }
-                                            title={"Стандартная Форма"}
-                                            descr={"Основной блок с формой"}
-                                            prevImage={"./img/formPreview.png"}
-                                            elements={{
-                                                input1: { val: "Ivan@mail.ru" },
-                                                input2: { val: "Иван Иванов" },
-                                                input3: {
-                                                    val: "+7 999 999 99 99",
-                                                },
-                                                btn: {
-                                                    val: "Отправить",
-                                                    fontSize: "15px",
-                                                    bg: "#2971f5",
-                                                    color: "#FFF",
-                                                },
-                                            }}
-                                        />
-                                    </>
-                                )}
-                            </div>}
-                            {value === "Добавить блок" &&<div
-                                onClick={() =>
-                                    setValue("Навигация")
-                                }
-                                className={styles.select}
-                            >
-                                <div className={styles.selectCont}>
-                                    <img src="./img/nav.svg" alt="" />
-                                    <h4>Навигация</h4>
+                            )}
+                            {value === "Форма" && (
+                                <div className={styles.sideBarContent}>
+                                    {
+                                        <>
+                                            <SidebarBlock
+                                                kind={"form"}
+                                                setContainerItems={
+                                                    setContainerItems
+                                                }
+                                                title={"Стандартная Форма"}
+                                                descr={"Основной блок с формой"}
+                                                prevImage={
+                                                    "./img/formPreview.png"
+                                                }
+                                                elements={{
+                                                    input1: {
+                                                        val: "Ivan@mail.ru",
+                                                    },
+                                                    input2: {
+                                                        val: "Иван Иванов",
+                                                    },
+                                                    input3: {
+                                                        val: "+7 999 999 99 99",
+                                                    },
+                                                    btn: {
+                                                        val: "Отправить",
+                                                        fontSize: "15px",
+                                                        bg: "#2971f5",
+                                                        color: "#FFF",
+                                                    },
+                                                }}
+                                            />
+                                        </>
+                                    }
                                 </div>
-                                <img
-                                    width={14}
-                                    height={11}
-                                    src="./img/arrRight.svg"
-                                    alt=""
-                                />
-                            </div>}
+                            )}
+                            {value === "Добавить блок" && (
+                                <div
+                                    onClick={() => setValue("Навигация")}
+                                    className={styles.select}
+                                >
+                                    <div className={styles.selectCont}>
+                                        <img src="./img/nav.svg" alt="" />
+                                        <h4>Навигация</h4>
+                                    </div>
+                                    <img
+                                        width={14}
+                                        height={11}
+                                        src="./img/arrRight.svg"
+                                        alt=""
+                                    />
+                                </div>
+                            )}
                             <div className={styles.sideBarContent}>
                                 {value === "Навигация" && (
                                     <>
@@ -390,23 +441,23 @@ export default function Constructor() {
                                     </>
                                 )}
                             </div>
-                            {value === "Добавить блок" && <div
-                                onClick={() =>
-                                    setValue("Обложка")
-                                }
-                                className={styles.select}
-                            >
-                                <div className={styles.selectCont}>
-                                    <img src="./img/cover.svg" alt="" />
-                                    <h4>Обложка</h4>
+                            {value === "Добавить блок" && (
+                                <div
+                                    onClick={() => setValue("Обложка")}
+                                    className={styles.select}
+                                >
+                                    <div className={styles.selectCont}>
+                                        <img src="./img/cover.svg" alt="" />
+                                        <h4>Обложка</h4>
+                                    </div>
+                                    <img
+                                        width={14}
+                                        height={11}
+                                        src="./img/arrRight.svg"
+                                        alt=""
+                                    />
                                 </div>
-                                <img
-                                    width={14}
-                                    height={11}
-                                    src="./img/arrRight.svg"
-                                    alt=""
-                                />
-                            </div>}
+                            )}
                             <div className={styles.sideBarContent}>
                                 {value === "Обложка" && (
                                     <>
@@ -443,23 +494,23 @@ export default function Constructor() {
                                     </>
                                 )}
                             </div>
-                            {value === "Добавить блок" && <div
-                                onClick={() =>
-                                    setValue("Текст")
-                                }
-                                className={styles.select}
-                            >
-                                <div className={styles.selectCont}>
-                                    <img src="./img/text.svg" alt="" />
-                                    <h4>Текст</h4>
+                            {value === "Добавить блок" && (
+                                <div
+                                    onClick={() => setValue("Текст")}
+                                    className={styles.select}
+                                >
+                                    <div className={styles.selectCont}>
+                                        <img src="./img/text.svg" alt="" />
+                                        <h4>Текст</h4>
+                                    </div>
+                                    <img
+                                        width={14}
+                                        height={11}
+                                        src="./img/arrRight.svg"
+                                        alt=""
+                                    />
                                 </div>
-                                <img
-                                    width={14}
-                                    height={11}
-                                    src="./img/arrRight.svg"
-                                    alt=""
-                                />
-                            </div>}
+                            )}
                             <div className={styles.sideBarContent}>
                                 {value === "Текст" && (
                                     <>
@@ -548,5 +599,61 @@ export default function Constructor() {
                 <ConstuctWindow />
             </DndProvider>
         </>
+    )
+}
+
+function ContextMenuSave({ isOpen, setIsOpen }) {
+    const sortRef = React.useRef(null)
+
+    const hidePopup = (event) => {
+        if (!event.nativeEvent.path.includes(sortRef.current)) {
+            setIsOpen(false)
+        }
+    }
+
+    if (!isOpen) {
+        return
+    }
+
+    return (
+        <div className={`${s.pages_popup} ${s.smooth}`} onClick={hidePopup}>
+            <div
+                className={`${s.pages_popup__container} ${s.pages_popup__center}`}
+                ref={sortRef}
+            >
+                <div className={s.pages_popup__title}>
+                    <p>Страницы</p>
+                    <button
+                        className={s.pages_popup__leave_btn}
+                        onClick={() => setIsOpen(false)}
+                    ></button>
+                </div>
+
+                <div className={s.pages_popup__list}>
+                    <div className={s.pages_popup__item}>
+                        <p className={s.pages_popup__name}>
+                            Редактируемая версия
+                        </p>
+                        <p className={s.pages_popup__web}>
+                            Синхронизировано с сервером две минуты назад
+                        </p>
+                        <a href="#" className={s.pages_popup__icon}></a>
+                    </div>
+                    <div className={s.pages_popup__button}>
+                        <button>Опубликовать</button>
+                    </div>
+                    <div
+                        className={`${s.pages_popup__item} ${s.pages_popup__item_second}`}
+                    >
+                        <p className={s.pages_popup__name}>
+                            Публичная версия на сайте
+                        </p>
+                        <p className={s.pages_popup__web}>
+                            Опубликована 01.12.2022 в 13:26
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
 }
