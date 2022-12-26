@@ -1,6 +1,6 @@
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { setCurrentPage, setIsOpen } from "../../redux/slices/pagesSlice"
+import { setCurrentPage, setIsOpen} from "../../redux/slices/pagesSlice"
 import s from "./PopupPages.module.scss"
 
 const PopupPages = () => {

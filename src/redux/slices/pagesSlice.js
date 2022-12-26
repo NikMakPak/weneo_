@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     currentPage: 1,
     isOpen: false,
-    items: [
+        items: [
         { id: 1, name: "Товары", website: "testsite.weneo.io/page1" },
         { id: 2, name: "О нас", website: "testsite.weneo.io/about" },
         { id: 3, name: "Главная", website: "testsite.weneo.io" },

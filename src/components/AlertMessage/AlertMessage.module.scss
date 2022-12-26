@@ -60,26 +60,26 @@
             border: none;
             font-weight: 500;
             font-size: 15px;
-            line-height: 20px;
-            color: #67a5eb;
+            line-height: 20px;    
             // background: ;
             letter-spacing: -0.24px;
             cursor: pointer;
 
-            &:hover {
-                background: #67a5eb;
-                color: #fff;
-            }
+            
         }
     }
 
     &__button_left {
         border-radius: 4px 4px 4px 12px;
         margin-right: 8px;
+        background: #67A5EB;
+        color: #fff;
     }
 
     &__button_right {
         border-radius: 4px 4px 12px 4px;
+        background: #F2F3F5;
+        color: #67A5EB;
     }
 
     &__list {

@@ -182,6 +182,7 @@ export default function Constructor() {
                 <ContextMenuSave
                     setIsOpen={setIsOpenContextMenuSave}
                     isOpen={isOpenContextMenuSave}
+                    title={"Сохранение и публикация"}
                 />
             )}
             <div className={styles.headerBar}>
@@ -622,7 +623,7 @@ function ContextMenuSave({ isOpen, setIsOpen }) {
                 ref={sortRef}
             >
                 <div className={s.pages_popup__title}>
-                    <p>Страницы</p>
+                    <p>Сохранение и публикация</p>
                     <button
                         className={s.pages_popup__leave_btn}
                         onClick={() => setIsOpen(false)}
