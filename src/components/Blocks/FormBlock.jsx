@@ -18,7 +18,7 @@ export default function FormBlock({
     return (
         <div
             onMouseLeave={() => setToolBarActive(false)}
-            onMouseEnter={() => setToolBarActive(true)}
+            onMouseOver={() => setToolBarActive(true)}
             onClick={onClickEdit}
             style={{
                 padding: "10px",

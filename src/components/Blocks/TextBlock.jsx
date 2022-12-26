@@ -21,7 +21,7 @@ export default function TextBlock({
     return (
         <div
             onMouseLeave={() => setToolBarActive(false)}
-            onMouseEnter={() => setToolBarActive(true)}
+            onMouseOver={() => setToolBarActive(true)}
             onClick={onClickEdit}
             style={{
                 width: "100%",

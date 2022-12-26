@@ -18,7 +18,7 @@ export default function NavBar({ Items, setContainerItems, containerItems }) {
 
 
     return (
-        <div onMouseLeave={() => setToolBarActive(false)} onMouseEnter={() => setToolBarActive(true)} onClick={onClickEdit} style={{
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseOver={() => setToolBarActive(true)} onClick={onClickEdit} style={{
            
         }}>
             <ToolBar active={toolBarActive} Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} blockStyles={blockStyles}></ToolBar>

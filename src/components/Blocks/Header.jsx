@@ -17,7 +17,7 @@ export default function Header({ Items, setContainerItems, containerItems }) {
 
 
     return (
-        <div onMouseLeave={() => setToolBarActive(false)} onMouseEnter={() => setToolBarActive(true)} onClick={onClickEdit} style={{
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseOver={() => setToolBarActive(true)} onClick={onClickEdit} style={{
             width: "100%",
             height: "100vh",
             display: 'flex',

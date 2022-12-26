@@ -14,7 +14,7 @@ export default function TitleBlock({ Items, setContainerItems, containerItems })
 
     }
     return (
-        <div onMouseLeave={() => setToolBarActive(false)} onMouseEnter={() => setToolBarActive(true)} onClick={onClickEdit} style={{
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseOver={() => setToolBarActive(true)} onClick={onClickEdit} style={{
             width: "100%",
         }}>
             <ToolBar active={toolBarActive} Items={Items} containerItems={containerItems} setContainerItems={setContainerItems} blockStyles={blockStyles}></ToolBar>
