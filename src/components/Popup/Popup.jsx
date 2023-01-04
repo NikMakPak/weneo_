@@ -42,6 +42,8 @@ const Popup = ({
         setContainerItems(containerItems)
         updateContainer()
     }
+    console.log(Object.entries(blockStyles));
+
 
     return (
         <div
@@ -92,38 +94,74 @@ const Popup = ({
                         {
                             switchSatt === false ? (
                                 Object.entries(blockStyles).map((e) => {
-                                    // console.log(e[1])
                                     return (
                                         <>
                                             <h4>{e[0]}</h4>
                                             {Object.entries(e[1]).map((obj) => {
                                                 return (
                                                     <>
-                                                        <p
-                                                            style={{
-                                                                opacity: "0.6",
-                                                            }}
-                                                        >
-                                                            {obj[0]}
-                                                        </p>
-                                                        <input
-                                                            onChange={(v) =>
-                                                                setBlockStyles({
-                                                                    ...blockStyles,
-                                                                    [e[0]]: {
-                                                                        ...e[1],
-                                                                        [obj[0]]:
-                                                                            v
-                                                                                .target
-                                                                                .value,
-                                                                    },
-                                                                })
-                                                            }
-                                                            type="text"
-                                                            defaultValue={
-                                                                obj[1]
-                                                            }
-                                                        />
+                                                        {typeof(obj[1]) === "string" &&<>
+                                                            <p
+                                                                style={{
+                                                                    opacity: "0.6",
+                                                                }}
+                                                            >
+                                                                {obj[0]}
+                                                            </p>
+                                                            <input
+                                                                onChange={(v) =>
+                                                                    setBlockStyles(({ ...Items, elements: { ...blockStyles, [e[0]]: { ...e[1], [obj[0]]: v.target.value, }, } }))
+                                                                }
+                                                                type="text"
+                                                                defaultValue={
+                                                                    obj[1]
+                                                                }
+                                                            />
+                                                        </>}
+                                                        {
+                                                            obj[0] === "val" && typeof (obj[1]) != 'string' ?
+                                                                Object.entries(obj[1]).map((objVal) => {
+                                                                    return (
+                                                                        <>
+                                                                            <h4
+                                                                                style={{
+                                                                                    opacity: "1",
+                                                                                }}
+                                                                            >
+                                                                                {objVal[0]}
+                                                                            </h4>
+                                                                            {
+                                                                                typeof (objVal[0]) == 'string' ?
+                                                                                    Object.entries(objVal[1]).map((obj2) => {
+                                                                                        return (
+                                                                                            <>
+                                                                                                <p
+                                                                                                    style={{
+                                                                                                        opacity: "0.6",
+                                                                                                    }}
+                                                                                                >
+                                                                                                    {obj2[0]}
+                                                                                                </p>
+                                                                                                <input
+                                                                                                    onChange={(v) =>
+                                                                                                        setBlockStyles(({ ...Items, elements: { ...blockStyles, [e[0]]: { ...e[1], val: { ...e[1].val, [objVal[0]]: { ...objVal[1], [obj2[0]]: v.target.value } }, }, } }))
+                                                                                                    }
+                                                                                                    type="text"
+                                                                                                    defaultValue={
+                                                                                                        obj2[1]
+                                                                                                    }
+                                                                                                />
+
+                                                                                            </>
+
+                                                                                        )
+                                                                                    }) : <>123</>
+                                                                            }
+                                                                        </>
+
+                                                                    )
+                                                                }) : <></>
+                                                        }
                                                     </>
                                                 )
                                             })}

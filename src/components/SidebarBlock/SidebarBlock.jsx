@@ -17,10 +17,10 @@ const style = {
   }
 
 
-export const SidebarBlock = function Box({title,descr, kind, prevImage, containerItems, setContainerItems, elements, ai = false}) {
+export const SidebarBlock = function Box({title,descr, kind, prevImage, containerItems, setContainerItems, elements, ai = false, mainStyle}) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: ItemTypes.BOX, //Нужно передавать тип блока, с помощью проверок в ConstructWindow Будет генериться нужный блок
-        item: { title, descr, elements, kind, ai},
+        item: { title, descr,mainStyle, elements, kind, ai},
         end: (item, monitor) => {
             const dropResult = monitor.getDropResult()
             if (item && dropResult) {

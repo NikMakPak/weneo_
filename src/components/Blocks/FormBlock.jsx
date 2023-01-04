@@ -1,86 +1,37 @@
 import React from "react"
 import Popup from "../Popup/Popup"
-import ToolBar from "../ToolBar/ToolBar"
-export default function FormBlock({
-    Items,
-    setContainerItems,
-    containerItems,
-}) {
+import ToolBar from "../ToolBar/ToolBar";
+import renderBlockMarkup from "../../utils/renderBlockMarkup";
+
+export default function Header({ Items, setContainerItems, containerItems }) {
+    console.log(Items);
     const [modalActive, setModalActive] = React.useState(false)
     const [modalPos, setModalPos] = React.useState({})
-    const [blockStyles, setBlockStyles] = React.useState(Items.elements)
     const [toolBarActive, setToolBarActive] = React.useState(false)
+    const [block, setBlock] = React.useState(Items)
+    React.useEffect(() => {
+        setMarkup(renderBlockMarkup(block))
+    }, [block])
+    const [markup, setMarkup] = React.useState(renderBlockMarkup(block))
     const onClickEdit = (event) => {
-        console.log(event)
-        setModalPos({ posX: event.clientX, posY: event.clientY })
+        console.log(event);
+        setModalPos({ posX: event.clientX, posY: event.clientY})
         setModalActive(true)
+
     }
+  
+
+console.log(markup);
+
     return (
-        <div
-            onMouseLeave={() => setToolBarActive(false)}
-            onMouseOver={() => setToolBarActive(true)}
-            onClick={onClickEdit}
-            style={{
-                padding: "10px",
-                background: "#FFF",
-                width: "100%",
-                height: "500px",
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
-            <ToolBar
+        <div onMouseLeave={() => setToolBarActive(false)} onMouseOver={() => setToolBarActive(true)}>
+        <ToolBar
                 active={toolBarActive}
-                Items={Items}
+                Items={block}
                 containerItems={containerItems}
                 setContainerItems={setContainerItems}
-                blockStyles={blockStyles}
+                blockStyles={block.elements}
             ></ToolBar>
-            <input
-                placeholder={blockStyles.input1.val}
-                style={{
-                    width: "50%",
-                    height: "60px",
-                    padding: "0 20px",
-                    margin: "auto",
-                }}
-                type="text"
-            />
-            <input
-                placeholder={blockStyles.input2.val}
-                style={{
-                    width: "50%",
-                    height: "60px",
-                    padding: "0 20px",
-                    margin: "auto",
-                }}
-                type="text"
-            />
-            <input
-                placeholder={blockStyles.input3.val}
-                style={{
-                    width: "50%",
-                    height: "60px",
-                    padding: "0 20px",
-                    margin: "auto",
-                }}
-                type="text"
-            />
-            <button
-                style={{
-                    width: "200px",
-                    height: "45px",
-                    borderRadius: "20px",
-                    border: "none",
-                    color: blockStyles.btn.color,
-                    fontSize: blockStyles.btn.fontSize,
-                    cursor: "pointer",
-                    margin: "auto",
-                    background: blockStyles.btn.bg,
-                }}
-            >
-                {blockStyles.btn.val}
-            </button>
             <Popup
                 Items={Items}
                 containerItems={containerItems}
@@ -88,9 +39,13 @@ export default function FormBlock({
                 active={modalActive}
                 setActive={() => setModalActive()}
                 pos={modalPos}
-                blockStyles={blockStyles}
-                setBlockStyles={(e) => setBlockStyles(e)}
+                blockStyles={block.elements}
+                setBlockStyles={(e) => setBlock(e)}
             />
+        <div dangerouslySetInnerHTML={markup}  onClick={onClickEdit} style={
+            block.mainStyle
+        }></div>
+        
         </div>
     )
 }

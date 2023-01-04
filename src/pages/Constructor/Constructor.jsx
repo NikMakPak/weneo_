@@ -144,15 +144,15 @@ export default function Constructor() {
                         style={
                             rSideBar
                                 ? {
-                                      display: "flex",
-                                      justifyContent: "end",
-                                      height: "100%",
-                                  }
+                                    display: "flex",
+                                    justifyContent: "end",
+                                    height: "100%",
+                                }
                                 : {
-                                      display: "flex",
-                                      justifyContent: "center",
-                                      height: "100%",
-                                  }
+                                    display: "flex",
+                                    justifyContent: "center",
+                                    height: "100%",
+                                }
                         }
                     >
                         {rSideBar ? (
@@ -383,21 +383,56 @@ export default function Constructor() {
                                                 prevImage={
                                                     "./img/formPreview.png"
                                                 }
+                                                mainStyle={
+                                                    {
+                                                        padding: "10px",
+                                                        background: "#FFF",
+                                                        width: "100%",
+                                                        height: "500px",
+                                                        display: "flex",
+                                                        flexDirection: "column",
+                                                    }
+                                                }
                                                 elements={{
-                                                    input1: {
+
+                                                    input_1: {
                                                         val: "Ivan@mail.ru",
+                                                        width: "50%",
+                                                        height: "60px",
+                                                        padding: "0 20px",
+                                                        margin: "auto",
+                                                        borderRadius: "0px",
+                                                        border: "1px solid #0003"
                                                     },
-                                                    input2: {
+                                                    input_2: {
                                                         val: "Иван Иванов",
+                                                        width: "50%",
+                                                        height: "60px",
+                                                        padding: "0 20px",
+                                                        margin: "auto",
+                                                        borderRadius: "0px",
+                                                        border: "1px solid #0003"
                                                     },
-                                                    input3: {
+                                                    input_3: {
                                                         val: "+7 999 999 99 99",
+                                                        width: "50%",
+                                                        height: "60px",
+                                                        padding: "0 20px",
+                                                        margin: "auto",
+                                                        borderRadius: "0px",
+                                                        border: "1px solid #0003"
                                                     },
-                                                    btn: {
+                                                    button: {
                                                         val: "Отправить",
                                                         fontSize: "15px",
-                                                        bg: "#2971f5",
+                                                        background: "#2971f5",
                                                         color: "#FFF",
+                                                        cursor: "pointer",
+                                                        margin: "auto",
+                                                        border: "none",
+                                                        width: "200px",
+                                                        height: "40px",
+                                                        borderRadius: "10px"
                                                     },
                                                 }}
                                             />
@@ -433,10 +468,42 @@ export default function Constructor() {
                                             title={"Стандартная навигация"}
                                             prevImage={"./img/navPreview.png"}
                                             descr={"Блок с навигацией"}
+                                            mainStyle={{
+                                                padding: "20px",
+                                                background: '#FFF',
+                                                width: "100%",
+                                                height: "50px",
+                                                display: 'flex',
+                                                justifyContent: "space-between",
+                                                alignItems: "center",
+                                            }}
                                             elements={{
-                                                li1: { val: "О нас" },
-                                                li2: { val: "Технологии" },
-                                                li3: { val: "Заказать" },
+                                                h3:{
+                                                    val: "Company name",
+                                                    color: "#000",
+                                                    fontSize: "25px"
+                                                },
+                                                ul: {
+                                                    display: "flex",
+                                                    listStyle: "none",
+                                                    val: {
+                                                        li_1: {
+                                                            val: "О нас",
+                                                            cursor: "pointer",
+                                                            marginRight: "20px"
+                                                        },
+                                                        li_2: {
+                                                            val: "Технологии",
+                                                            cursor: "pointer",
+                                                            marginRight: "20px"
+                                                        },
+                                                        li_3: {
+                                                            val: "Заказать",
+                                                            cursor: "pointer",
+                                                            marginRight: "20px"
+                                                        },
+                                                    }
+                                                },
                                             }}
                                         />
                                     </>
@@ -473,23 +540,50 @@ export default function Constructor() {
                                                 "Блок с стандартной обложкой, включает в себя Заголовок, Описание и Кнопку"
                                             }
                                             prevImage={"./img/coverPreview.png"}
+                                            mainStyle={
+                                                {
+                                                    width: "100%",
+                                                    height: "100vh",
+                                                    display: 'flex',
+                                                    background: "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/header-img.jpg') center",
+                                                    backgroundSize: "cover",
+                                                    flexDirection: "column",
+                                                    backgroundPosition: "center",
+
+                                                }
+                                            }
                                             elements={{
-                                                h1: {
-                                                    val: "Сайт для вашего бизнеса",
-                                                    fontSize: "45px",
-                                                    color: "#FFF",
+                                                div: {
+                                                    margin: "auto",
+                                                    textAlign: "center",
+                                                    width: "70%",
+                                                    val: {
+                                                        h1: {
+                                                            val: "Сайт для вашего бизнеса",
+                                                            fontSize: "45px",
+                                                            color: "#FFF",
+                                                        },
+                                                        h4: {
+                                                            val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.",
+                                                            fontSize: "20px",
+                                                            color: "#FFF",
+                                                            marginBottom: "40px",
+                                                        },
+                                                        button: {
+                                                            val: "Создать",
+                                                            fontSize: "15px",
+                                                            background: "#2971F5",
+                                                            color: "#FFF",
+                                                            width: "200px",
+                                                            height: "45px",
+                                                            borderRadius: "20px",
+                                                            border: "none",
+                                                            cursor: "pointer",
+                                                            margin: "0 auto",
+                                                        },
+                                                    }
                                                 },
-                                                h4: {
-                                                    val: "Добавьте интересные подробности о вашей компании. Кликом на блок можно изменить его наполнение или настроить стили.",
-                                                    fontSize: "20px",
-                                                    color: "#FFF",
-                                                },
-                                                btn: {
-                                                    val: "Создать",
-                                                    fontSize: "15px",
-                                                    bg: "#2971F5",
-                                                    color: "#FFF",
-                                                },
+
                                             }}
                                         />
                                     </>
@@ -525,11 +619,16 @@ export default function Constructor() {
                                                 "Блок с стандартным заголовком"
                                             }
                                             prevImage={"./img/titlePreview.png"}
+                                            mainStyle={{
+                                                width: "100%"
+                                            }}
                                             elements={{
                                                 h1: {
                                                     val: "Заголовок",
                                                     fontSize: "35px",
                                                     color: "#000",
+                                                    textAlign: "center",
+                                                    margin: "10px"
                                                 },
                                             }}
                                         />
@@ -542,11 +641,19 @@ export default function Constructor() {
                                             title={"Стандартный текст"}
                                             descr={"Блок с стандартным текстом"}
                                             prevImage={"./img/textPreview.png"}
+                                            mainStyle={{
+                                                width: "100%",
+                                                padding: "10px",
+                                            }}
                                             elements={{
                                                 p: {
                                                     val: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo pariatur ut ea dignissimos, mollitia a. Eaque a ducimus, tenetur temporibus dolore perspiciatis veritatis exercitationem rem quidem natus et numquam? Quisquam.",
                                                     fontSize: "25px",
                                                     color: "#000",
+                                                    width: "70%",
+                                                    margin: "0 auto",
+                                                    lineHeight: "30px",
+                                                    textAlign: "center",
                                                 },
                                             }}
                                         />
@@ -564,14 +671,51 @@ export default function Constructor() {
                                                 "./img/AiPostblockPreview.png"
                                             }
                                             ai={true}
+                                            mainStyle={{
+                                                margin: "0 auto",
+                                                width: "50%"
+                                            }}
                                             elements={{
-                                                title: {
+                                                h3: {
                                                     val: "Новая статья",
                                                 },
 
                                                 p: {
                                                     val: "Веб-сайт как система электронных документов (файлов данных и кода) может принадлежать частному лицу или организации и быть доступным в компьютерной сети под общим доменным именем и IP-адресом или локально на одном компьютере. В статье журнала «Хозяйство и право» также было высказано мнение, что каждый сайт имеет своё название, которое при этом не следует путать с доменным именем. С точки зрения авторского права сайт является составным произведением, соответственно название сайта подлежит охране наряду с названиями всех прочих произведений.Все сайты в совокупности составляют Всемирную паутину, где коммуникация (паутина) объединяет сегменты информации мирового сообщества в единое целое — базу данных и коммуникации планетарного масштаба. Для прямого доступа клиентов к сайтам на серверах был специально разработан протокол HTTP.",
+                                                    fontSize: "20px",
+                                                    lineHeight: "25px"
                                                 },
+                                                ul: {
+                                                    listStyle: "none",
+                                                    display: "flex",
+                                                    flexWrap: "wrap",
+                                                    val: {
+                                                        li_1: {
+                                                            val: "...",
+                                                            marginRight: "20px",
+                                                            border: "1px solid gray",
+                                                            borderRadius: "15px",
+                                                            padding: "5px 5px",
+                                                            marginBottom: "5px",
+                                                        },
+                                                        li_2: {
+                                                            val: "...",
+                                                            marginRight: "20px",
+                                                            border: "1px solid gray",
+                                                            borderRadius: "15px",
+                                                            padding: "5px 5px",
+                                                            marginBottom: "5px",
+                                                        },
+                                                        li_3: {
+                                                            val: "...",
+                                                            marginRight: "20px",
+                                                            border: "1px solid gray",
+                                                            borderRadius: "15px",
+                                                            padding: "5px 5px",
+                                                            marginBottom: "5px",
+                                                        }
+                                                    },
+                                                }
                                             }}
                                         />
                                     </>
