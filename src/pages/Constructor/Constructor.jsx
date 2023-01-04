@@ -8,6 +8,7 @@ import TextBlock from "../../components/Blocks/TextBlock"
 import FormBlock from "../../components/Blocks/FormBlock"
 import { useDrop, DndProvider } from "react-dnd"
 import { HTML5Backend } from "react-dnd-html5-backend"
+import renderPageMarkup from "../../utils/renderPageMarkup"
 import { ItemTypes } from "../../components/SidebarBlock/ItemTypes"
 import NavBar from "../../components/Blocks/Block/NavBar"
 import Header from "../../components/Blocks/Header"
@@ -48,7 +49,7 @@ export default function Constructor() {
             containerItems,
         ])
     }, [containerItems])
-
+    console.log(renderPageMarkup(containerItems));
     const style = {
         overflow: preview ? "" : "auto",
         marginTop: preview ? "" : "68px",
@@ -73,11 +74,11 @@ export default function Constructor() {
         const isActive = canDrop && isOver
         let backgroundColor = "#FFF"
         if (isActive) {
-            // backgroundColor = 'gray'
+            backgroundColor = "rgba(0,0,0, 0.1)"
         } else if (canDrop) {
-            backgroundColor = "rgba(200,200,200, 0.1)"
+            backgroundColor = "rgba(0,0,0, 0.1)"
         }
-        console.log(containerItems)
+        // console.log(containerItems)
         return (
             <div
                 ref={drop}
@@ -387,8 +388,8 @@ export default function Constructor() {
                                                     {
                                                         padding: "10px",
                                                         background: "#FFF",
-                                                        width: "100%",
                                                         height: "500px",
+                                                        width: "100%",
                                                         display: "flex",
                                                         flexDirection: "column",
                                                     }
@@ -545,7 +546,7 @@ export default function Constructor() {
                                                     width: "100%",
                                                     height: "100vh",
                                                     display: 'flex',
-                                                    background: "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./img/header-img.jpg') center",
+                                                    background: "linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://lichi.com/_next/static/media/career-header.b39c94ea.jpg') center", // ./img/header-img.jpg
                                                     backgroundSize: "cover",
                                                     flexDirection: "column",
                                                     backgroundPosition: "center",

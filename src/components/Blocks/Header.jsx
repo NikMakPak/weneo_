@@ -4,7 +4,6 @@ import ToolBar from "../ToolBar/ToolBar";
 import renderBlockMarkup from "../../utils/renderBlockMarkup";
 
 export default function Header({ Items, setContainerItems, containerItems }) {
-    console.log(Items);
     const [modalActive, setModalActive] = React.useState(false)
     const [modalPos, setModalPos] = React.useState({})
     const [toolBarActive, setToolBarActive] = React.useState(false)
@@ -14,7 +13,6 @@ export default function Header({ Items, setContainerItems, containerItems }) {
     }, [block])
     const [markup, setMarkup] = React.useState(renderBlockMarkup(block))
     const onClickEdit = (event) => {
-        console.log(event);
         setModalPos({ posX: event.clientX, posY: event.clientY})
         setModalActive(true)
 
